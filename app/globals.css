@@ -1,34 +1,42 @@
 @import "tailwindcss";
 
 /*
-  In Tailwind v4 non esiste più tailwind.config.ts.
-  I token di design (colori, font, spaziatura) si definiscono qui dentro @theme.
-  Tailwind genera automaticamente le utility class: bg-accent, text-primary, font-heading, ecc.
+  Tailwind v4: i token di design si definiscono qui con @theme.
+  Ogni --color-* genera le utility class: bg-surface, text-accent, border-border, ecc.
+  Ogni --font-* genera: font-sans, font-heading, ecc.
 */
 @theme {
-  /* Font — le variabili CSS sono iniettate da next/font nel layout.tsx */
-  --font-sans: var(--font-inter);
+  /* Font — variabili iniettate da next/font nel layout.tsx */
+  --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
 
-  /* Palette colori */
-  --color-primary:      #1A1A1A;
+  /* Dark theme — sfondo nero, testi bianchi, accento oro */
+  --color-bg:           #0D0D0D;
+  --color-surface:      #1A1A1A;
+  --color-surface-high: #242424;
+  --color-border:       #2A2A2A;
+  --color-text:         #F5F5F5;
+  --color-muted:        #A0A0A0;
   --color-accent:       #C9A96E;
   --color-accent-light: #D4B97A;
   --color-accent-dark:  #B8944F;
-  --color-light:        #F5F5F5;
-  --color-cream:        #FAF9F6;
-  --color-muted:        #6B6B6B;
+  --color-white:        #FFFFFF;
 }
 
-/* Reset dark mode — il sito non ha dark mode */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #ffffff;
-  color: #1A1A1A;
+  background-color: #0D0D0D;
+  color: #F5F5F5;
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Scrollbar sottile e scura, coerente col tema */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #0D0D0D; }
+::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C9A96E; }

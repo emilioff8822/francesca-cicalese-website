@@ -39,37 +39,44 @@ Sito **interamente statico** (no backend, no database). Tutti i contenuti sono h
 
 ### Sito di riferimento: premingerlaw.com
 
-Il sito di riferimento principale è [premingerlaw.com](https://premingerlaw.com). Analizziamolo:
-- **Struttura**: Sezioni full-width che scorrono verticalmente. Ogni sezione ha un unico focus.
-- **Tipografia**: Titoli enormi e coraggiosi. Molto testo grande che occupa spazio.
-- **Colori**: Prevalenza di bianco/grigio chiarissimo, sezioni scure con testo bianco, tocchi di colore minimi.
-- **Immagini**: Fotografie architetturali (colonne di tribunali, biblioteche legali) — evocative, non didascaliche.
-- **Navigazione**: Semplicissima. Pochi link, nessuna mega-menu, CTA sempre visibile.
-- **Respiro**: Tantissimo whitespace. Gli elementi non si toccano mai.
+Il DNA visivo viene da [premingerlaw.com](https://premingerlaw.com):
+- Sezioni full-width, ogni sezione un unico focus
+- Tipografia enorme e coraggiosa — titoli che occupano spazio
+- Navigazione semplicissima, CTA sempre visibile
+- Tantissimo respiro tra gli elementi
 
-### Come adattiamo questo stile per Francesca Cicalese
+### Come adattiamo per Francesca Cicalese — DARK EDITION
 
-Partiamo dallo stesso DNA visivo di premingerlaw.com ma aggiungiamo:
-- **Oro/Champagne** come accento — trasmette autorevolezza italiana, lusso sobrio
-- **Cormorant Garamond** per i titoli — più elegante e raffinato di qualsiasi font sans
-- **Simboli della giustizia** trattati con eleganza: NON clipart o icone stock. Useremo:
-  - Linee sottili geometriche ispirate alla bilancia (forma astratta, non letterale)
-  - Fotografie di colonne architetturali, marmo, dettagli di tribunali italiani
-  - Icone vettoriali custom minimaliste per le aree di pratica (linee sottili, 1-2px, stile outline)
-- **Animazioni Framer Motion**: Il sito "prende vita" mentre scorri — elementi che appaiono dal basso, titoli che si rivelano carattere per carattere, hover che rispondono con eleganza
+Stesso DNA strutturale, ma il sito è **fondamentalmente scuro**:
+- Sfondo **nero** `#0D0D0D` come base di tutto il sito — mai sfondo bianco o chiaro
+- **Oro/Champagne** `#C9A96E` come unico colore accento — lusso sobrio su nero
+- **Cormorant Garamond** per i titoli — eleganza e autorevolezza
+- **Simboli della giustizia** eleganti: icone SVG outline (bilancia stilizzata, colonne), mai clipart
+- **Mobile-first**: ogni componente viene progettato prima per telefono, poi adattato al desktop
+- **Animazioni Framer Motion**: fade-in dal basso on scroll, hover con glow oro, transizioni fluide
 
-### Palette Colori
+### ⚠️ Regola assoluta di design
+> **Mai sfondo chiaro come sfondo principale.**
+> Le sezioni alternate usano `#1A1A1A`, non bianco.
+> Il bianco appare solo per testo su sfondo scuro, mai come sfondo.
+
+### Palette Colori — DARK THEME
+
+Il sito è **fondamentalmente scuro**. Sfondo nero/blu scuro, testi bianchi, accento oro.
+Nessuna prevalenza di bianco. Nessun sfondo chiaro come sfondo principale.
 
 | Nome | Hex | Uso specifico |
 |---|---|---|
-| Bianco | `#FFFFFF` | Sfondo principale, testo su sfondi scuri |
-| Nero elegante | `#1A1A1A` | Testi corpo, sezioni scure (CTA, footer) |
-| Oro / Champagne | `#C9A96E` | Accento principale: bottoni CTA, linee decorative, hover, dettagli |
+| Background | `#0D0D0D` | Sfondo principale di tutto il sito |
+| Surface | `#1A1A1A` | Card, sezioni alternate, elementi elevati |
+| Surface alto | `#242424` | Navbar, elementi ancora più elevati |
+| Testo primario | `#F5F5F5` | Titoli e testi principali |
+| Testo secondario | `#A0A0A0` | Sottotitoli, testi secondari, muted |
+| Oro / Champagne | `#C9A96E` | Accento principale: bottoni CTA, linee, hover, dettagli |
 | Oro chiaro | `#D4B97A` | Hover state del colore oro |
-| Oro scuro | `#B8944F` | Active state del colore oro |
-| Grigio chiaro | `#F5F5F5` | Sfondi sezioni alternate |
-| Bianco caldo | `#FAF9F6` | Sfondo hero, sezioni di benvenuto |
-| Grigio testo | `#6B6B6B` | Testi secondari, sottotitoli |
+| Oro scuro | `#B8944F` | Active / pressed state |
+| Bordo | `#2A2A2A` | Linee di separazione, bordi sottili |
+| Bianco puro | `#FFFFFF` | Testo su sfondi oro, casi specifici |
 
 ### Tipografia
 
