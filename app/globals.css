@@ -16,11 +16,11 @@
   --color-white:        #FFFFFF;
 }
 
-:root {
-  color-scheme: dark;
-}
+:root { color-scheme: dark; }
 
-/* ─── Base ─────────────────────────────────────────────────────────────── */
+/* ─── Base ─────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
 body {
   background-color: #070B14;
   color: #F2F5FF;
@@ -30,10 +30,24 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── Aurora background ─────────────────────────────────────────────────
-   Gradiente radiale animato che si sposta lentamente —
-   visibile come un bagliore blu profondo che respira.
-   Applicato direttamente sul body come pseudo-elemento.
+/* ─── Noise texture ─────────────────────────────────────────────────
+   Filtro turbulence SVG come pseudo-elemento fisso.
+   Aggiunge profondità ai backgrounds piatti senza appesantire.
+   I designer moderni lo usano per rompere la "piattezza digitale".
+*/
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ─── Aurora background ─────────────────────────────────────────
+   Bagliore blu che respira lentamente — sempre fisso, sempre presente.
 */
 body::before {
   content: "";
@@ -42,46 +56,45 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(77, 142, 240, 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(54, 112, 208, 0.05) 0%, transparent 60%);
-  animation: aurora-shift 12s ease-in-out infinite alternate;
+    radial-gradient(ellipse 80% 50% at 15% 15%, rgba(77, 142, 240, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 85%, rgba(54, 112, 208, 0.06) 0%, transparent 60%);
+  animation: aurora-shift 14s ease-in-out infinite alternate;
 }
 
 @keyframes aurora-shift {
-  0%   { opacity: 0.6; transform: scale(1) translateX(0); }
-  50%  { opacity: 1;   transform: scale(1.05) translateX(20px); }
-  100% { opacity: 0.7; transform: scale(1) translateX(-10px); }
+  0%   { opacity: 0.5; transform: scale(1); }
+  50%  { opacity: 1;   transform: scale(1.04) translateX(15px); }
+  100% { opacity: 0.6; transform: scale(1) translateX(-8px); }
 }
 
-/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+/* ─── Transizioni di sezione senza linee ────────────────────────
+   Invece di border-t, ogni sezione usa questo pattern:
+   sfuma verso l'alto nel colore del bg precedente.
+   Da usare come className="section-fade-top"
+*/
+.section-fade-top {
+  position: relative;
+}
+.section-fade-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, #070B14, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: #070B14; }
 ::-webkit-scrollbar-thumb { background: #243348; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #4D8EF0; }
 
-/* ─── Selezione testo ───────────────────────────────────────────────────── */
+/* ─── Selezione testo ───────────────────────────────────────── */
 ::selection {
-  background: rgba(77, 142, 240, 0.25);
+  background: rgba(77, 142, 240, 0.2);
   color: #F2F5FF;
-}
-
-/* ─── Utility globali di animazione ────────────────────────────────────────
-   Queste classi vengono usate dai componenti con Framer Motion.
-   Definite qui in CSS per transizioni non-JS (link, hover, focus).
-*/
-.link-underline {
-  position: relative;
-}
-.link-underline::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #4D8EF0;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.link-underline:hover::after {
-  width: 100%;
 }

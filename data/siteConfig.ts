@@ -4,8 +4,8 @@ export const siteConfig = {
   role: "Avvocato",
   studio: "Studio Legale Cicalese",
 
-  phone: "+39 XXX XXX XXXX",
-  email: "info@francescacicalese.it",
+  phone: "+39 349 163 5839",
+  email: "francescacicalese1@gmail.com",
   address: "Via Sabotino",
   city: "Roma",
   cap: "00195",
