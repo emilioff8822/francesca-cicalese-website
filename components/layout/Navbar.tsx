@@ -1,11 +1,5 @@
 "use client"
 
-/*
-  "use client" è necessario qui perché usiamo useState e useEffect.
-  In Next.js, questo componente viene comunque pre-renderizzato sul server (SSR),
-  quindi è visibile a Google — nessun problema per il SEO.
-*/
-
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { siteConfig } from "@/data/siteConfig"
@@ -21,14 +15,11 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth >= 768) setMenuOpen(false)
-    }
+    const onResize = () => { if (window.innerWidth >= 768) setMenuOpen(false) }
     window.addEventListener("resize", onResize)
     return () => window.removeEventListener("resize", onResize)
   }, [])
 
-  // Blocca lo scroll del body quando il menu mobile è aperto
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : ""
     return () => { document.body.style.overflow = "" }
@@ -38,7 +29,7 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-surface-high/90 backdrop-blur-md border-b border-border"
+          ? "bg-surface-high/95 backdrop-blur-md border-b border-border"
           : "bg-transparent"
       }`}
     >
@@ -46,10 +37,10 @@ export default function Navbar() {
         className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5"
         aria-label="Navigazione principale"
       >
-        {/* Logo — nome dell'avvocatessa */}
+        {/* Logo */}
         <Link
           href="/"
-          className="font-heading text-xl text-text transition-colors duration-300 hover:text-accent"
+          className="font-heading text-xl italic text-text transition-colors duration-300 hover:text-accent"
           onClick={() => setMenuOpen(false)}
         >
           Avv. Francesca Cicalese
@@ -64,47 +55,34 @@ export default function Navbar() {
                 className="group relative font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-text"
               >
                 {link.label}
-                {/* Linea oro che scorre da sx a dx all'hover */}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
               </Link>
             </li>
           ))}
         </ul>
 
-        {/* CTA desktop */}
+        {/* CTA desktop — bordo sottile, nessun riempimento colorato di default */}
         <Link
           href="/contatti"
-          className="hidden md:inline-flex items-center font-sans text-xs uppercase tracking-widest text-accent border border-accent px-5 py-2.5 transition-all duration-300 hover:bg-accent hover:text-bg"
+          className="hidden md:inline-flex items-center font-sans text-xs uppercase tracking-widest text-text border border-border px-5 py-2.5 transition-all duration-300 hover:border-accent hover:text-accent"
         >
           Contattami
         </Link>
 
-        {/* Hamburger mobile — tre linee che si trasformano in X */}
+        {/* Hamburger mobile */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden flex flex-col items-center justify-center w-8 h-8 gap-1.5"
           aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
           aria-expanded={menuOpen}
         >
-          <span
-            className={`block h-px w-6 bg-text transition-all duration-300 origin-center ${
-              menuOpen ? "translate-y-[7px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-text transition-all duration-300 ${
-              menuOpen ? "opacity-0 scale-x-0" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-text transition-all duration-300 origin-center ${
-              menuOpen ? "-translate-y-[7px] -rotate-45" : ""
-            }`}
-          />
+          <span className={`block h-px w-6 bg-text transition-all duration-300 origin-center ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
+          <span className={`block h-px w-6 bg-text transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+          <span className={`block h-px w-6 bg-text transition-all duration-300 origin-center ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
         </button>
       </nav>
 
-      {/* Menu mobile — pannello che scende */}
+      {/* Menu mobile */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
           menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
@@ -115,7 +93,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="font-sans text-sm uppercase tracking-widest text-text transition-colors duration-300 hover:text-accent"
+                className="font-sans text-sm uppercase tracking-widest text-muted transition-colors duration-300 hover:text-text"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
@@ -125,7 +103,7 @@ export default function Navbar() {
           <li className="pt-4 border-t border-border">
             <Link
               href="/contatti"
-              className="inline-flex font-sans text-xs uppercase tracking-widest text-accent border border-accent px-6 py-3 transition-all duration-300 hover:bg-accent hover:text-bg"
+              className="inline-flex font-sans text-xs uppercase tracking-widest text-text border border-border px-6 py-3 transition-all duration-300 hover:border-accent hover:text-accent"
               onClick={() => setMenuOpen(false)}
             >
               Contattami

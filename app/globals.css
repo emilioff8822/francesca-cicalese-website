@@ -1,28 +1,29 @@
 @import "tailwindcss";
 
 /*
-  Tailwind v4: i design token si definiscono qui con @theme.
-  Ogni --color-* genera le utility: bg-bg, text-accent, border-border, ecc.
+  Tailwind v4: design token in @theme.
+  Ogni --color-* genera: bg-bg, text-accent, border-border, ecc.
   Ogni --font-*  genera: font-sans, font-heading, ecc.
 */
 @theme {
-  /* Font — variabili CSS iniettate da next/font nel layout.tsx */
   --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
 
   /*
-    Palette: nero con anima blu navy + oro come accento caldo.
-    Il contrasto freddo (blu-nero) vs caldo (oro) è la firma visiva del sito.
+    Palette: Obsidian + Zaffiro Elettrico
+    Sfondi quasi-neri con anima blu, testo bianco lunare,
+    accento zaffiro usato con estrema parsimonia.
+    Ispirazione: orologi IWC, Quinn Emanuel, architettura istituzionale.
   */
-  --color-bg:           #080D1A;
-  --color-surface:      #111827;
-  --color-surface-high: #1E2A3D;
-  --color-border:       #2A3B55;
-  --color-text:         #F0F4FF;
-  --color-muted:        #8A9BB5;
-  --color-accent:       #C9A96E;
-  --color-accent-light: #D4B97A;
-  --color-accent-dark:  #B8944F;
+  --color-bg:           #070B14;
+  --color-surface:      #0F1624;
+  --color-surface-high: #1A2535;
+  --color-border:       #243348;
+  --color-text:         #F2F5FF;
+  --color-muted:        #6A8CAE;
+  --color-accent:       #4D8EF0;
+  --color-accent-light: #7AAAF5;
+  --color-accent-dark:  #3670D0;
   --color-white:        #FFFFFF;
 }
 
@@ -31,15 +32,15 @@
 }
 
 body {
-  background-color: #080D1A;
-  color: #F0F4FF;
+  background-color: #070B14;
+  color: #F2F5FF;
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar coerente col tema */
-::-webkit-scrollbar       { width: 5px; }
-::-webkit-scrollbar-track { background: #080D1A; }
-::-webkit-scrollbar-thumb { background: #2A3B55; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #C9A96E; }
+/* Scrollbar coerente */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #070B14; }
+::-webkit-scrollbar-thumb { background: #243348; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #4D8EF0; }

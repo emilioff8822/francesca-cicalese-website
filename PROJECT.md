@@ -60,25 +60,30 @@ Stesso DNA strutturale, ma il sito è **fondamentalmente scuro**:
 > Le sezioni alternate usano `#1A1A1A`, non bianco.
 > Il bianco appare solo per testo su sfondo scuro, mai come sfondo.
 
-### Palette Colori — NERO + BLU PROFONDO + BIANCO + ORO
+### Palette Colori — OBSIDIAN + ZAFFIRO ELETTRICO
 
-Combinazione: sfondi freddi quasi-neri con sfumatura blu navy, testi bianchi freddi, accento caldo oro.
-Il contrasto freddo/caldo (blu-nero vs oro) crea l'eleganza classica dei siti legali di lusso.
+L'oro era la scorciatoia pigra. Eliminato.
+Ispirazione: orologi IWC, Quinn Emanuel, architettura istituzionale romana.
+L'accento zaffiro viene usato con **estrema parsimonia** — solo dove guida la visione.
 
 | Nome | Hex | Uso specifico |
 |---|---|---|
-| Background | `#080D1A` | Sfondo principale — nero con sottile anima blu |
-| Surface | `#111827` | Card, sezioni alternate — navy scuro |
-| Surface alto | `#1E2A3D` | Navbar, elementi elevati — navy medio |
-| Bordo | `#2A3B55` | Linee di separazione, bordi — blu-grigio |
-| Testo primario | `#F0F4FF` | Titoli e testi — bianco con lieve freddo |
-| Testo secondario | `#8A9BB5` | Sottotitoli, didascalie — grigio-blu |
-| Oro / Champagne | `#C9A96E` | Accento caldo principale: CTA, linee, hover |
-| Oro chiaro | `#D4B97A` | Hover state oro |
-| Oro scuro | `#B8944F` | Active / pressed state |
-| Bianco puro | `#FFFFFF` | Testo su sfondi oro o accenti specifici |
+| Background | `#070B14` | Sfondo principale — obsidian con anima blu |
+| Surface | `#0F1624` | Card, sezioni alternate — navy profondo |
+| Surface alto | `#1A2535` | Navbar, elementi elevati |
+| Bordo | `#243348` | Linee di separazione, bordi sottili |
+| Testo primario | `#F2F5FF` | Titoli e testi — bianco lunare freddo |
+| Testo muted | `#6A8CAE` | Sottotitoli, didascalie, testi secondari |
+| Zaffiro (accento) | `#4D8EF0` | CTA, hover, linee di enfasi — usato raramente |
+| Zaffiro chiaro | `#7AAAF5` | Hover state |
+| Zaffiro scuro | `#3670D0` | Active / pressed |
+| Bianco puro | `#FFFFFF` | Solo su sfondi accent |
 
-**NO** custom cursor. Stile pulito, minimalista, mai barocco.
+**NO** oro. **NO** custom cursor. Minimalismo assoluto.
+
+### Foto di Francesca (disponibili in /public/images)
+- `francesca-toga.png` — in toga nella Corte di Cassazione → uso in Hero / Chi Sono (immagine principale)
+- `francesca-esterno.png` — fuori in toga con statua classica → uso in Chi Sono (immagine secondaria)
 
 ### Tipografia
 
