@@ -60,23 +60,25 @@ Stesso DNA strutturale, ma il sito è **fondamentalmente scuro**:
 > Le sezioni alternate usano `#1A1A1A`, non bianco.
 > Il bianco appare solo per testo su sfondo scuro, mai come sfondo.
 
-### Palette Colori — DARK THEME
+### Palette Colori — NERO + BLU PROFONDO + BIANCO + ORO
 
-Il sito è **fondamentalmente scuro**. Sfondo nero/blu scuro, testi bianchi, accento oro.
-Nessuna prevalenza di bianco. Nessun sfondo chiaro come sfondo principale.
+Combinazione: sfondi freddi quasi-neri con sfumatura blu navy, testi bianchi freddi, accento caldo oro.
+Il contrasto freddo/caldo (blu-nero vs oro) crea l'eleganza classica dei siti legali di lusso.
 
 | Nome | Hex | Uso specifico |
 |---|---|---|
-| Background | `#0D0D0D` | Sfondo principale di tutto il sito |
-| Surface | `#1A1A1A` | Card, sezioni alternate, elementi elevati |
-| Surface alto | `#242424` | Navbar, elementi ancora più elevati |
-| Testo primario | `#F5F5F5` | Titoli e testi principali |
-| Testo secondario | `#A0A0A0` | Sottotitoli, testi secondari, muted |
-| Oro / Champagne | `#C9A96E` | Accento principale: bottoni CTA, linee, hover, dettagli |
-| Oro chiaro | `#D4B97A` | Hover state del colore oro |
+| Background | `#080D1A` | Sfondo principale — nero con sottile anima blu |
+| Surface | `#111827` | Card, sezioni alternate — navy scuro |
+| Surface alto | `#1E2A3D` | Navbar, elementi elevati — navy medio |
+| Bordo | `#2A3B55` | Linee di separazione, bordi — blu-grigio |
+| Testo primario | `#F0F4FF` | Titoli e testi — bianco con lieve freddo |
+| Testo secondario | `#8A9BB5` | Sottotitoli, didascalie — grigio-blu |
+| Oro / Champagne | `#C9A96E` | Accento caldo principale: CTA, linee, hover |
+| Oro chiaro | `#D4B97A` | Hover state oro |
 | Oro scuro | `#B8944F` | Active / pressed state |
-| Bordo | `#2A2A2A` | Linee di separazione, bordi sottili |
-| Bianco puro | `#FFFFFF` | Testo su sfondi oro, casi specifici |
+| Bianco puro | `#FFFFFF` | Testo su sfondi oro o accenti specifici |
+
+**NO** custom cursor. Stile pulito, minimalista, mai barocco.
 
 ### Tipografia
 

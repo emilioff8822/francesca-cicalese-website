@@ -5,10 +5,10 @@ export default function Home() {
         <p className="font-heading text-5xl text-text">
           Avv. Francesca Cicalese
         </p>
-        <p className="mt-4 font-sans text-sm uppercase tracking-widest text-accent">
+        <p className="mt-4 font-sans text-xs uppercase tracking-widest text-accent">
           Studio Legale · Roma
         </p>
-        <p className="mt-6 font-sans text-muted text-sm">
+        <p className="mt-6 font-sans text-sm text-muted">
           Setup completato — Step 1 ✓
         </p>
       </div>

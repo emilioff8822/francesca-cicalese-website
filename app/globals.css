@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
 /*
-  Tailwind v4: i token di design si definiscono qui con @theme.
-  Ogni --color-* genera le utility class: bg-surface, text-accent, border-border, ecc.
-  Ogni --font-* genera: font-sans, font-heading, ecc.
+  Tailwind v4: i design token si definiscono qui con @theme.
+  Ogni --color-* genera le utility: bg-bg, text-accent, border-border, ecc.
+  Ogni --font-*  genera: font-sans, font-heading, ecc.
 */
 @theme {
-  /* Font — variabili iniettate da next/font nel layout.tsx */
+  /* Font — variabili CSS iniettate da next/font nel layout.tsx */
   --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
 
-  /* Dark theme — sfondo nero, testi bianchi, accento oro */
-  --color-bg:           #0D0D0D;
-  --color-surface:      #1A1A1A;
-  --color-surface-high: #242424;
-  --color-border:       #2A2A2A;
-  --color-text:         #F5F5F5;
-  --color-muted:        #A0A0A0;
+  /*
+    Palette: nero con anima blu navy + oro come accento caldo.
+    Il contrasto freddo (blu-nero) vs caldo (oro) è la firma visiva del sito.
+  */
+  --color-bg:           #080D1A;
+  --color-surface:      #111827;
+  --color-surface-high: #1E2A3D;
+  --color-border:       #2A3B55;
+  --color-text:         #F0F4FF;
+  --color-muted:        #8A9BB5;
   --color-accent:       #C9A96E;
   --color-accent-light: #D4B97A;
   --color-accent-dark:  #B8944F;
@@ -28,15 +31,15 @@
 }
 
 body {
-  background-color: #0D0D0D;
-  color: #F5F5F5;
+  background-color: #080D1A;
+  color: #F0F4FF;
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar sottile e scura, coerente col tema */
-::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: #0D0D0D; }
-::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
+/* Scrollbar coerente col tema */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #080D1A; }
+::-webkit-scrollbar-thumb { background: #2A3B55; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #C9A96E; }
