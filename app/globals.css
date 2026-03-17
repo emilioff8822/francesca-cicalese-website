@@ -1,20 +1,9 @@
 @import "tailwindcss";
 
-/*
-  Tailwind v4: design token in @theme.
-  Ogni --color-* genera: bg-bg, text-accent, border-border, ecc.
-  Ogni --font-*  genera: font-sans, font-heading, ecc.
-*/
 @theme {
   --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
 
-  /*
-    Palette: Obsidian + Zaffiro Elettrico
-    Sfondi quasi-neri con anima blu, testo bianco lunare,
-    accento zaffiro usato con estrema parsimonia.
-    Ispirazione: orologi IWC, Quinn Emanuel, architettura istituzionale.
-  */
   --color-bg:           #070B14;
   --color-surface:      #0F1624;
   --color-surface-high: #1A2535;
@@ -31,16 +20,68 @@
   color-scheme: dark;
 }
 
+/* ─── Base ─────────────────────────────────────────────────────────────── */
 body {
   background-color: #070B14;
   color: #F2F5FF;
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Scrollbar coerente */
+/* ─── Aurora background ─────────────────────────────────────────────────
+   Gradiente radiale animato che si sposta lentamente —
+   visibile come un bagliore blu profondo che respira.
+   Applicato direttamente sul body come pseudo-elemento.
+*/
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(77, 142, 240, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(54, 112, 208, 0.05) 0%, transparent 60%);
+  animation: aurora-shift 12s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-shift {
+  0%   { opacity: 0.6; transform: scale(1) translateX(0); }
+  50%  { opacity: 1;   transform: scale(1.05) translateX(20px); }
+  100% { opacity: 0.7; transform: scale(1) translateX(-10px); }
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: #070B14; }
 ::-webkit-scrollbar-thumb { background: #243348; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #4D8EF0; }
+
+/* ─── Selezione testo ───────────────────────────────────────────────────── */
+::selection {
+  background: rgba(77, 142, 240, 0.25);
+  color: #F2F5FF;
+}
+
+/* ─── Utility globali di animazione ────────────────────────────────────────
+   Queste classi vengono usate dai componenti con Framer Motion.
+   Definite qui in CSS per transizioni non-JS (link, hover, focus).
+*/
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #4D8EF0;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-underline:hover::after {
+  width: 100%;
+}
