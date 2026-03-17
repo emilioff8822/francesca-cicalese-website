@@ -10,9 +10,6 @@ type Props = {
   className?: string
 }
 
-// Wrapper per animazione fade-in allo scroll.
-// Parametri calibrati per un effetto professionale e sobrio:
-// y max 16px (non 60), niente skew, niente direzioni laterali.
 export default function FadeIn({
   children,
   delay = 0,

@@ -14,11 +14,7 @@ export default function Servizi() {
             <FadeIn key={servizio.id} delay={index * 0.1}>
               <SpotlightCard className="bg-surface border border-border rounded-lg transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-border-hover hover:-translate-y-1">
                 <div className="p-8 md:p-10">
-                  <span className="text-xs text-faint font-medium tracking-wider">
-                    0{index + 1}
-                  </span>
-
-                  <h3 className="text-lg font-medium text-text mt-4 mb-3">
+                  <h3 className="text-lg font-medium text-text mb-3">
                     {servizio.titolo}
                   </h3>
 

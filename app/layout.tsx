@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
-import SmoothScroll from "@/components/SmoothScroll"
+import SmoothScroll from "@/components/providers/SmoothScroll"
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",

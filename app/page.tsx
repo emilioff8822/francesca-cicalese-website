@@ -4,7 +4,7 @@ import Servizi from "@/components/sections/Servizi"
 import Testimonianze from "@/components/sections/Testimonianze"
 import CTASection from "@/components/sections/CTASection"
 import Divider from "@/components/ui/Divider"
-import PageTransition from "@/components/PageTransition"
+import PageTransition from "@/components/providers/PageTransition"
 
 export default function Home() {
   return (

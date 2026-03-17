@@ -4,21 +4,15 @@
   --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
 
-  /* Background — 3 livelli */
   --color-bg:       #08090D;
   --color-surface:  #10131A;
-  --color-elevated: #181C26;
 
-  /* Text — 3 livelli */
   --color-text:  #E8ECF4;
   --color-muted: #7A8499;
   --color-faint: #4A5568;
 
-  /* Accent — un solo colore, parsimonia */
-  --color-accent:       #5B8DEF;
-  --color-accent-light: #7AAAF5;
+  --color-accent: #5B8DEF;
 
-  /* Bordi — quasi invisibili */
   --color-border:       rgba(255, 255, 255, 0.06);
   --color-border-hover: rgba(255, 255, 255, 0.12);
 
@@ -41,7 +35,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Gradiente radiale statico — unico elemento atmosferico */
 body::before {
   content: "";
   position: fixed;
@@ -55,7 +48,6 @@ body::before {
   );
 }
 
-/* Link hover — scaleX da 0→1, più performante del width */
 .link-hover {
   position: relative;
 }
@@ -75,7 +67,6 @@ body::before {
   transform: scaleX(1);
 }
 
-/* Footer link — leggero shift dx al hover */
 .footer-link {
   display: inline-block;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -84,13 +75,11 @@ body::before {
   transform: translateX(4px);
 }
 
-/* Scrollbar — sottile, coerente col tema */
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: #08090D; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #7A8499; }
 
-/* Selezione testo */
 ::selection {
   background: rgba(91, 141, 239, 0.15);
   color: #E8ECF4;

@@ -16,7 +16,6 @@ export default function CTASection() {
 
   const bilanciaY = useTransform(scrollYProgress, [0, 1], [-30, 30])
   const bilanciaRotate = useTransform(scrollYProgress, [0, 1], [-3, 3])
-  const bilanciaOpacity = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0.02, 0.04, 0.02])
 
   return (
     <section
@@ -24,10 +23,9 @@ export default function CTASection() {
       className="relative py-24 md:py-32 bg-surface overflow-hidden"
       aria-label="Contattami"
     >
-      {/* Bilancia con parallax + rotazione + opacità variabile */}
       <motion.div
-        style={{ y: bilanciaY, rotate: bilanciaRotate, opacity: bilanciaOpacity }}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        style={{ y: bilanciaY, rotate: bilanciaRotate }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.08]"
         aria-hidden="true"
       >
         <Image src="/images/bilancia.png" alt="" width={300} height={300} />
