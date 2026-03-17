@@ -67,28 +67,26 @@ export default function ChiSono() {
 
                 <FadeIn delay={0.2}>
                   <p className="text-base text-muted leading-[1.8] mb-6">
-                    Sono un avvocato iscritto all&apos;Ordine degli Avvocati di Roma con oltre dieci
-                    anni di esperienza nel foro capitolino. Ho maturato una solida preparazione
-                    in diritto penale, diritto di famiglia e diritto civile, con una particolare
-                    attenzione alla tutela dei soggetti più vulnerabili.
+                    Sono un avvocato laureata in Giurisprudenza a Roma, iscritta all&apos;Ordine
+                    degli Avvocati di Roma. Con oltre quattro anni di esperienza nel foro capitolino,
+                    ho maturato una solida preparazione in diritto penale, diritto di famiglia e
+                    diritto civile.
                   </p>
                 </FadeIn>
 
                 <FadeIn delay={0.3}>
                   <p className="text-base text-muted leading-[1.8] mb-6">
-                    Ho conseguito la laurea in Giurisprudenza con lode presso l&apos;Università
-                    La Sapienza di Roma, specializzandomi poi in diritto penale e procedura
-                    penale. Nel corso degli anni ho affiancato l&apos;attività forense a quella
-                    di aggiornamento professionale continuo, partecipando a seminari e convegni
-                    di rilevanza nazionale.
+                    La mia formazione si è arricchita attraverso diverse esperienze presso studi
+                    legali di Roma, dove ho avuto modo di seguire procedimenti complessi e di
+                    costruire un metodo di lavoro rigoroso e orientato al risultato.
                   </p>
                 </FadeIn>
 
                 <FadeIn delay={0.4}>
                   <p className="text-base text-muted leading-[1.8] mb-10">
-                    Il mio studio è situato nel cuore di Roma, nel quartiere Prati, a pochi
-                    passi dal Palazzo di Giustizia. Offro assistenza legale personalizzata,
-                    privilegiando sempre il dialogo e la trasparenza con i clienti.
+                    Il mio studio è situato nel quartiere Prati, a pochi passi dal Palazzo di
+                    Giustizia. Offro assistenza legale personalizzata, privilegiando sempre
+                    il dialogo e la trasparenza con ogni cliente.
                   </p>
                 </FadeIn>
 

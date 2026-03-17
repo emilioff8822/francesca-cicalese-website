@@ -1,10 +1,10 @@
 export type Testimonianza = {
-  id: number;
-  testo: string;
-  nome: string;
-  citta: string;
-  servizio?: string;
-};
+  id: number
+  testo: string
+  nome: string
+  citta: string
+  servizio?: string
+}
 
 export const testimonianze: Testimonianza[] = [
   {
@@ -26,9 +26,17 @@ export const testimonianze: Testimonianza[] = [
   {
     id: 3,
     testo:
-      "Consiglio vivamente l'Avv. Cicalese. Preparata, trasparente e sempre presente. Ha gestito il mio licenziamento con grande efficacia e ho ottenuto il risarcimento che meritavo.",
+      "Consiglio vivamente l'Avv. Cicalese. Preparata, trasparente e sempre presente. Ha affrontato il mio procedimento penale con una competenza che mi ha dato fiducia fin dal primo incontro.",
     nome: "Giuseppe M.",
     citta: "Roma",
-    servizio: "Diritto del Lavoro",
+    servizio: "Diritto Penale",
   },
-];
+  {
+    id: 4,
+    testo:
+      "Ho affrontato una separazione difficile con tre figli coinvolti. L'Avv. Cicalese ha gestito ogni aspetto con sensibilità e fermezza. Non potevo sperare in un esito migliore.",
+    nome: "Elena V.",
+    citta: "Roma",
+    servizio: "Diritto di Famiglia",
+  },
+]
