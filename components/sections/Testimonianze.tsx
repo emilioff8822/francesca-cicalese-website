@@ -1,15 +1,20 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { testimonianze } from "@/data/testimonianze"
 import SectionLabel from "@/components/ui/SectionLabel"
 
 export default function Testimonianze() {
   const [current, setCurrent] = useState(0)
+  const touchStartX = useRef<number | null>(null)
 
   const next = useCallback(() => {
     setCurrent((i) => (i + 1) % testimonianze.length)
+  }, [])
+
+  const prev = useCallback(() => {
+    setCurrent((i) => (i - 1 + testimonianze.length) % testimonianze.length)
   }, [])
 
   useEffect(() => {
@@ -17,8 +22,25 @@ export default function Testimonianze() {
     return () => clearInterval(timer)
   }, [next, current])
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return
+    const delta = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(delta) > 50) delta > 0 ? next() : prev()
+    touchStartX.current = null
+  }
+
   return (
-    <section className="py-24 md:py-32" aria-label="Testimonianze" id="recensioni">
+    <section
+      className="py-24 md:py-32"
+      aria-label="Testimonianze"
+      id="recensioni"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="max-w-3xl mx-auto px-5 md:px-12 text-center">
         <SectionLabel text="Testimonianze" />
 
@@ -38,14 +60,14 @@ export default function Testimonianze() {
         </AnimatePresence>
 
         {/* Testo con blur in/out */}
-        <div className="min-h-[140px] flex items-center justify-center">
-          <AnimatePresence mode="wait">
+        <div className="min-h-[140px] flex items-center justify-center relative">
+          <AnimatePresence>
             <motion.blockquote
               key={current}
-              initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, filter: "blur(6px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(6px)", position: "absolute" }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="font-heading text-xl md:text-2xl italic text-text leading-[1.6]"
             >
               {testimonianze[current].testo}
@@ -53,12 +75,12 @@ export default function Testimonianze() {
           </AnimatePresence>
         </div>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.p
             key={`author-${current}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, position: "absolute" }}
             transition={{ duration: 0.3 }}
             className="text-sm text-muted mt-6"
           >

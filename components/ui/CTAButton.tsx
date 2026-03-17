@@ -10,7 +10,7 @@ export default function CTAButton({ text, href, fullWidth = false }: Props) {
   return (
     <Link
       href={href}
-      className={`group relative inline-block overflow-hidden border border-border px-8 py-3.5 text-sm uppercase tracking-[0.15em] font-medium text-muted transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent hover:text-text hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(91,141,239,0.15)] active:scale-[0.98] active:transition-transform active:duration-100 ${
+      className={`group relative inline-block overflow-hidden border px-8 py-3.5 text-sm uppercase tracking-[0.15em] font-medium transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] border-border-hover text-muted md:border-border hover:border-accent hover:text-text hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(91,141,239,0.15)] active:scale-[0.98] active:border-accent active:text-text active:transition-transform active:duration-100 ${
         fullWidth ? "w-full text-center py-4" : ""
       }`}
     >

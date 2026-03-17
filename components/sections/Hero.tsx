@@ -26,7 +26,6 @@ export default function Hero() {
         style={{ y: titleY, opacity: titleOpacity }}
         className="relative z-10 mx-auto w-full max-w-6xl px-5 md:px-12 py-20 md:py-28"
       >
-        {/* Linea che si espande dal centro */}
         <div className="flex items-center gap-4 mb-10">
           <motion.div
             initial={{ width: 0 }}
@@ -44,7 +43,6 @@ export default function Hero() {
           </motion.span>
         </div>
 
-        {/* Nome con TextReveal */}
         <h1 className="font-heading font-medium text-5xl md:text-6xl lg:text-7xl text-text leading-[1.1]">
           <TextReveal delay={0.6}>Francesca</TextReveal>
           <br />
@@ -68,7 +66,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Linea verticale decorativa in basso — suggerisce scroll */}
       <motion.div
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: 80, opacity: 0.1 }}
