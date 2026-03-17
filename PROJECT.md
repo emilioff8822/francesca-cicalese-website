@@ -21,7 +21,7 @@ Sito **interamente statico** (no backend, no database). Tutti i contenuti sono h
 | # | Step | Stato | Note |
 |---|---|---|---|
 | **1** | Setup base: font, colori, file data, layout root | ✅ Completato | — |
-| **2** | Navbar + Footer | ⬜ Da fare | Presenti su tutte le pagine |
+| **2** | Navbar + Footer | ✅ Completato | — |
 | **3** | Homepage — Hero section | ⬜ Da fare | Prima impressione, massimo impatto |
 | **4** | Homepage — Chi Sono preview + Servizi | ⬜ Da fare | Sezioni centrali homepage |
 | **5** | Homepage — Testimonianze + CTA finale | ⬜ Da fare | Completa la homepage |
@@ -353,6 +353,7 @@ Dominio:   francescacicalese.it (da acquistare)
 |---|---|---|
 | 17/03/2026 | Step 0 | Creato PROJECT.md, pianificazione completa |
 | 17/03/2026 | Step 1 | Installato framer-motion, configurati font e colori Tailwind v4, creati file /data, aggiornato layout.tsx (lang=it, metadata), pulito page.tsx |
+| 17/03/2026 | Step 2 | Creati Navbar.tsx (use client, menu mobile, hamburger animato, scroll behavior) e Footer.tsx (Server Component, 3 colonne, linea oro) |
 
 ---
 
