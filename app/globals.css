@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
+/*
+  In Tailwind v4 non esiste più tailwind.config.ts.
+  I token di design (colori, font, spaziatura) si definiscono qui dentro @theme.
+  Tailwind genera automaticamente le utility class: bg-accent, text-primary, font-heading, ecc.
+*/
+@theme {
+  /* Font — le variabili CSS sono iniettate da next/font nel layout.tsx */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-cormorant);
+
+  /* Palette colori */
+  --color-primary:      #1A1A1A;
+  --color-accent:       #C9A96E;
+  --color-accent-light: #D4B97A;
+  --color-accent-dark:  #B8944F;
+  --color-light:        #F5F5F5;
+  --color-cream:        #FAF9F6;
+  --color-muted:        #6B6B6B;
+}
+
+/* Reset dark mode — il sito non ha dark mode */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #1A1A1A;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
