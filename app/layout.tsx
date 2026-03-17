@@ -3,12 +3,8 @@ import { Cormorant_Garamond, Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
+import SmoothScroll from "@/components/SmoothScroll"
 
-/*
-  next/font scarica i font a build-time e li serve localmente.
-  .variable inietta una CSS custom property (--font-cormorant, --font-inter)
-  sull'elemento <html>, poi usata da Tailwind in globals.css @theme.
-*/
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
@@ -24,11 +20,6 @@ const inter = Inter({
   display: "swap",
 })
 
-/*
-  In Next.js il SEO si gestisce con export const metadata — niente <head> manuale.
-  Il template "%s | ..." genera titoli come "Chi Sono | Avv. Francesca Cicalese"
-  su ogni pagina che definisce il proprio titolo.
-*/
 export const metadata: Metadata = {
   title: {
     default: "Avv. Francesca Cicalese | Studio Legale Roma",
@@ -53,8 +44,10 @@ export default function RootLayout({
     <html lang="it" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
         <Navbar />
-        {children}
-        <Footer />
+        <SmoothScroll>
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   )

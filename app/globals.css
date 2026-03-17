@@ -1,28 +1,24 @@
 @import "tailwindcss";
 
-/*
-  Tailwind v4: design token in @theme.
-  Ogni --color-* genera le utility class corrispondenti.
-*/
 @theme {
   --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
 
-  /* Backgrounds — 3 livelli, non di più */
-  --color-bg:           #08090D;
-  --color-surface:      #10131A;
-  --color-elevated:     #181C26;
+  /* Background — 3 livelli */
+  --color-bg:       #08090D;
+  --color-surface:  #10131A;
+  --color-elevated: #181C26;
 
   /* Text — 3 livelli */
-  --color-text:         #E8ECF4;
-  --color-muted:        #7A8499;
-  --color-faint:        #4A5568;
+  --color-text:  #E8ECF4;
+  --color-muted: #7A8499;
+  --color-faint: #4A5568;
 
-  /* Accent — un solo colore, usato con estrema parsimonia */
+  /* Accent — un solo colore, parsimonia */
   --color-accent:       #5B8DEF;
   --color-accent-light: #7AAAF5;
 
-  /* Bordi — quasi invisibili, solo suggeriti */
+  /* Bordi — quasi invisibili */
   --color-border:       rgba(255, 255, 255, 0.06);
   --color-border-hover: rgba(255, 255, 255, 0.12);
 
@@ -31,7 +27,10 @@
 
 :root { color-scheme: dark; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: auto !important;
+  scroll-padding-top: 80px;
+}
 
 body {
   background-color: #08090D;
@@ -42,11 +41,7 @@ body {
   overflow-x: hidden;
 }
 
-/*
-  Gradiente radiale statico — unico elemento atmosferico.
-  Fisso in alto a destra, quasi impercettibile.
-  Non anima, non distrae, dà solo una leggera profondità.
-*/
+/* Gradiente radiale statico — unico elemento atmosferico */
 body::before {
   content: "";
   position: fixed;
@@ -60,11 +55,40 @@ body::before {
   );
 }
 
-/* Scrollbar */
-::-webkit-scrollbar       { width: 4px; }
+/* Link hover — scaleX da 0→1, più performante del width */
+.link-hover {
+  position: relative;
+}
+.link-hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-hover:hover::after {
+  transform: scaleX(1);
+}
+
+/* Footer link — leggero shift dx al hover */
+.footer-link {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.footer-link:hover {
+  transform: translateX(4px);
+}
+
+/* Scrollbar — sottile, coerente col tema */
+::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: #08090D; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #5B8DEF; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7A8499; }
 
 /* Selezione testo */
 ::selection {

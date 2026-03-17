@@ -1,307 +1,228 @@
-# GRAFICA.md — Analisi visiva del progetto
-### Sito vetrina: Avv. Francesca Cicalese — Studio Legale Roma
+# GRAFICA.md — Design System & Visual Architecture (v3)
 
-> Documento creato per revisione esterna.
-> Il revisore non ha accesso al localhost, quindi ogni scelta è descritta nel dettaglio.
-> Obiettivo: feedback su direzione grafica, UX, animazioni, struttura.
+> Ultimo aggiornamento: 17 marzo 2026
+> Stato: Homepage completa — upgrade "Awwwards-level" implementato
 
 ---
 
-## 1. IDENTITÀ VISIVA — Filosofia di partenza
+## 1. Filosofia di Design
 
-Il sito deve comunicare: **autorevolezza, precisione, fiducia**. Non è il classico sito di avvocato con linee e griglie rigide. L'obiettivo è che un visitatore entri e pensi "questo non è il solito studio legale".
+Luxury minimal con influenze editoriali e cinematografiche.
+Il sito deve sentirsi come un'esperienza, non un depliant.
+Ogni scroll rivela qualcosa, ogni interazione ha peso.
 
-L'ispirazione principale è **premingerlaw.com** (studio legale texano, award-winning design), integrata con estetica da luxury brand europeo (Bottega Veneta, IWC, Rolls-Royce Digital). La differenza rispetto a un sito generico:
-
-- Il sito è un **viaggio** (ATTO 1 → ATTO 4), non una brochure
-- Ogni sezione risponde a **una sola domanda** del visitatore
-- Nessun elemento duplicato — se c'è in navbar non c'è in footer
-- Il **silenzio visivo** (whitespace, semitrasparenze, ghost elements) comunica lusso
+Ispirazione: Linear.app, Stripe, Bottega Veneta digital, conductlaw.com.
 
 ---
 
-## 2. PALETTE COLORI
+## 2. Palette Colori — Obsidian + Sapphire
 
-### Sistema: Obsidian + Zaffiro Elettrico
+| Token               | Hex / Valore              | Uso                          |
+|----------------------|---------------------------|------------------------------|
+| `--color-bg`         | `#08090D`                 | Sfondo principale            |
+| `--color-surface`    | `#10131A`                 | Card, sezione CTA            |
+| `--color-elevated`   | `#181C26`                 | Elementi elevati (riservato) |
+| `--color-text`       | `#E8ECF4`                 | Testo primario               |
+| `--color-muted`      | `#7A8499`                 | Testo secondario, label      |
+| `--color-faint`      | `#4A5568`                 | Numeri decorativi, terziario |
+| `--color-accent`     | `#5B8DEF`                 | Accent — linee, CTA, hover   |
+| `--color-accent-light` | `#7AAAF5`              | Accent chiaro (riservato)    |
+| `--color-border`     | `rgba(255,255,255,0.06)`  | Bordi default                |
+| `--color-border-hover` | `rgba(255,255,255,0.12)` | Bordi al hover               |
 
-La scelta cade su sfondi quasi-neri con un'anima blu navy, accentati da un zaffiro elettrico usato con estrema parsimonia. L'oro è stato deliberatamente scartato (troppo comune nei siti legali, associato a studi anni '90 o casinò).
-
-| Token Tailwind | Nome | Hex | Uso |
-|---|---|---|---|
-| `bg-bg` | Obsidian | `#070B14` | Sfondo base di tutto il sito |
-| `bg-surface` | Navy profondo | `#0F1624` | Card, footer, sezioni alternate |
-| `bg-surface-high` | Navy medio | `#1A2535` | Navbar scrolled, overlay menu |
-| `border-border` | Bordo blu-grigio | `#243348` | Divisori, bordi elementi |
-| `text-text` | Bianco lunare | `#F2F5FF` | Titoli, testi primari |
-| `text-muted` | Grigio-blu | `#6A8CAE` | Testi secondari, label, placeholder |
-| `text-accent` | Zaffiro elettrico | `#4D8EF0` | Accento principale, usato pochissimo |
-| `text-accent-light` | Zaffiro chiaro | `#7AAAF5` | Hover states |
-| `text-accent-dark` | Zaffiro scuro | `#3670D0` | Pressed/active states |
-
-### Effetto aurora (background animato)
-Sul `body::before` è presente un gradiente radiale animato in loop da 14 secondi:
-- Due "blob" di luce blu (`rgba(77,142,240,0.08)` e `rgba(54,112,208,0.06)`)
-- Posizionati uno in alto a sinistra, uno in basso a destra
-- Si spostano lentamente con `translateX` e `scale` — l'effetto è un bagliore che "respira"
-- Non è visibile in modo ovvio, ma toglie la "piattezza digitale" del background
-
-### Noise texture
-Sul `body::after` è applicato un filtro SVG `feTurbulence` come rumore di sfondo:
-- Opacità: 2.5% — **non percepibile consciamente**, ma aggiunge profondità
-- Frequenza: 0.9 — grana fine
-- Questa tecnica viene usata da Figma, Linear, e molti siti luxury 2024-2026
+Atmosfera: gradiente radiale fisso `radial-gradient(ellipse at 70% 0%, rgba(91,141,239,0.04), transparent 60%)` come sfondo su body. Nessun effetto animato (aurora, noise rimossi).
 
 ---
 
-## 3. TIPOGRAFIA
+## 3. Tipografia
 
-| Font | Tipo | Pesi | CDN |
-|---|---|---|---|
-| **Cormorant Garamond** | Serif | 400, 500, 600, 700 + corsivo | Google Fonts (via next/font) |
-| **Inter** | Sans-serif | 300, 400, 500, 600 | Google Fonts (via next/font) |
+| Font               | Uso                      | Peso            |
+|--------------------|--------------------------|-----------------|
+| Cormorant Garamond | Titoli, H1-H3, citazioni | 400, 500, 600, 700 |
+| Inter              | Body, UI, label, nav     | 300, 400, 500, 600 |
 
-### Logica di utilizzo
-- **Cormorant Garamond in corsivo** = identità, presenza, autorevolezza. Usato per: nome del sito in navbar, nome nell'hero H1, titoli di sezione, telefono nel footer, quote.
-- **Inter** = precisione, leggibilità. Usato per: body text, label, bottoni, navigazione, tutti i testi secondari.
-
-### Contrasto tipografico (tecnica dei luxury brand)
-La differenza di dimensione tra Cormorant e Inter È il design. Il mix tra un titolo enorme in serif corsivo e una label minuscola uppercase sans-serif crea una gerarchia visiva potente senza bisogno di colori forti.
-
-### Scala tipografica
-- H1 hero: `clamp(4rem, 10vw, 8rem)` — responsive, enorme su desktop, grande su mobile
-- Label sezioni: `text-xs uppercase tracking-[0.4em]` — distanziato, quasi sparisce
-- Body: `text-sm leading-loose` — leggibile, respirato
-- Contatti nel footer: `text-2xl italic` — inaspettato, crea interesse
+Caricati via `next/font/google` con `display: "swap"` e variabili CSS `--font-cormorant`, `--font-inter`.
 
 ---
 
-## 4. NAVBAR
+## 4. Smooth Scroll — Lenis
 
-### Stato attuale: Overlay full-screen
-La navbar è ridotta al **minimo**: logo a sinistra, "Contattami" + "Menu" a destra.
-Quando l'utente clicca "Menu", si apre un **overlay full-screen** con:
+Lo scroll nativo è stato sostituito con **Lenis** (`npm install lenis`):
+- `lerp: 0.1` — interpolazione morbida
+- `duration: 1.2` — durata del momentum
+- `smoothWheel: true` — scroll con mousewheel fluido
 
-**Elementi dell'overlay:**
-- Background: `#070B14` al 98% + `backdrop-blur-2xl`
-- Ghost watermark: "Legge" in Cormorant italics, opacità 3%, enorme sullo sfondo
-- 4 link di navigazione con counter (01, 02, 03, 04), in Cormorant italic 5xl–7xl
-- Ogni link ha un bordo bottom sottile che cambia colore all'hover (→ accent)
-- In basso: telefono, email, indirizzo in Inter piccolo
-- Animazione ingresso: i link appaiono da sinistra con stagger da 0.08s
+L'effetto: lo scroll dell'intera pagina è "buttery smooth" come nei siti Awwwards.
+`html { scroll-behavior: auto !important }` disabilita lo smooth nativo (Lenis gestisce tutto).
 
-**Animazione apertura:**
-- Overlay: `opacity 0 → 1` in 0.4s
-- Link: `x: -40px, opacity: 0 → x: 0, opacity: 1` con stagger
-- Chiusura: inversione automatica con `AnimatePresence` di Framer Motion
-
-### ⚠️ Nota per il revisore
-C'è **incertezza** su questa scelta. L'approccio overlay è più editoriale e "luxury" ma:
-- Richiede un click in più per navigare
-- La vecchia navbar con 4 link visibili era forse più usabile, specialmente per utenti meno digitali (target: clienti con problemi legali, non designer)
-- **Domanda aperta**: overlay full-screen oppure navbar classica con link sempre visibili?
+Lenis wrappa `{children}` e `Footer` in `layout.tsx`. La `Navbar` resta fuori (fixed, non deve scrollare).
 
 ---
 
-## 5. HERO SECTION
+## 5. Componenti Animati
 
-### Layout (desktop)
-Split orizzontale: **55% testo sinistra / 45% foto destra**
+### 5A. TextReveal (`components/ui/TextReveal.tsx`)
+**L'effetto signature del sito.** Il testo si rivela parola per parola:
+- Ogni parola è dentro un `<span>` con `overflow: hidden`
+- La parola interna fa `translateY: 100% → 0%`
+- Stagger di `0.03s` tra ogni parola
+- Easing: `[0.215, 0.61, 0.355, 1]` (easeOutCubic)
+- Durata: `0.8s` per parola
+- Si attiva sullo scroll (useInView, margin: -15%)
 
-```
-┌────────────────────────────────────────────────────────┐
-│  Studio Legale · Roma          [foto Francesca         │
-│                                 in toga, Corte di      │
-│  Avv.                           Cassazione]            │
-│  Francesca                                             │
-│  Cicalese                    [La foto sfuma verso      │
-│  ────────                     sinistra con gradient    │
-│                               lineare, si fonde col bg]│
-│  Difesa penale, famiglia...                            │
-│                                                        │
-│  [Contattami] [I miei servizi →]                       │
-│                                                        │
-│  10+        3          Roma                            │
-│  Anni exp   Aree       Foro                            │
-│                                                        │
-│              ↓ Scorri (animato)                        │
-└────────────────────────────────────────────────────────┘
-```
+Usato in: nome Hero ("Francesca", "Cicalese"), H2 "Chi Sono", H2 CTA "Parliamo del tuo caso."
 
-### Layout mobile
-La foto è in background full-width con overlay scuro (bg/70%) + i testi sopra.
+### 5B. FadeIn (`components/ui/FadeIn.tsx`)
+Fade-in verticale generico per contenuti:
+- `opacity: 0 → 1`, `y: 16px → 0`
+- Durata 0.6s, easing `[0.22, 1, 0.36, 1]`
+- `once: true`, margin: -60px
 
-### Animazioni del titolo (tecnica editorial)
-Il nome "Francesca" / "Cicalese" si rivela parola per parola:
-- Ogni parola parte da `y: 60px, skewY: 4deg, opacity: 0`
-- Arriva a `y: 0, skewY: 0, opacity: 1`
-- Stagger: 0.18s tra una parola e l'altra
-- Easing: `[0.22, 1, 0.36, 1]` — custom cubic-bezier, più fluido di ease-out standard
-- Ispirazione: siti editoriali Bottega Veneta, agency Work & Co
+### 5C. SpotlightCard (`components/ui/SpotlightCard.tsx`)
+Effetto luce che segue il mouse sulle card:
+- Traccia `onMouseMove` la posizione relativa alla card
+- Renderizza un `radial-gradient(600px circle at ${x}px ${y}px, rgba(91,141,239,0.06), transparent 40%)`
+- Al `mouseLeave` il gradiente sfuma in 500ms
+- Ispirazione diretta: Stripe Dashboard, Linear feature cards
 
-### La foto — trattamento
-- Immagine: `francesca-toga.png` — Francesca in toga nera con cravatta bianca, all'interno della Corte di Cassazione di Roma (colonne, porta in legno massello, illuminazione calda)
-- Sfumatura sinistra: `linear-gradient(to right, #070B14 0%, rgba(7,11,20,0.7) 40%, transparent 100%)` — la foto "evapora" verso il bg, non ha un bordo netto
-- Sfumatura bassa: fade verso il bg in fondo
-- Il risultato: la foto fa parte del design, non è un rettangolo incollato
-
-### ⚠️ Nota per il revisore
-Il committente ha sollevato una perplessità: **"l'immagine gigante di lei appena entri è un po' spaventosa"**.
-- Possibile soluzione A: ridurre la foto a un formato più piccolo, non full-height
-- Possibile soluzione B: usare la seconda foto (francesca-esterno.png — fuori con statua, luce naturale, più soft) nell'hero invece della toga
-- Possibile soluzione C: non foto nell'hero, ma foto nella sezione "Chi Sono"
-- Possibile soluzione D: mostrare la foto solo come sfondo semitrasparente, con testo centrato full-width
-- **Richiedo feedback su quale direzione preferire**
-
-### Statistiche (nella Hero)
-Tre numeri: 10+ anni di esperienza / 3 aree di pratica / Roma (foro)
-In Cormorant italic, separati da linee verticali. Appaiono con FadeIn delay 1.5s.
+### 5D. PageTransition (`components/PageTransition.tsx`)
+Transizione di ingresso pagina:
+- `opacity: 0 → 1`, `y: 20px → 0`
+- Durata 0.5s, easing custom
+- Wrappa il contenuto di ogni page
 
 ---
 
-## 6. FOOTER
+## 6. Sezioni Homepage — Dettaglio
 
-### Filosofia: la chiusura del viaggio
-Il footer **non è un secondo menu**. È il momento in cui il visitatore ha visto tutto e deve decidere: mi fido? La risposta del footer è: "Parliamo."
+### 6A. Hero (`components/sections/Hero.tsx`)
+**Cinematografico, non statico.** Sequenza orchestrata in timeline:
+1. **0-0.6s**: Linea orizzontale accent si espande da 0 a 60px
+2. **0.3-0.5s**: "Studio Legale" appare sopra (fade + translateY 8px)
+3. **0.6-1.4s**: "Francesca" con TextReveal lettera per lettera, Cormorant 72px
+4. **1.0-1.8s**: "Cicalese" con TextReveal, delay 1.0s
+5. **2.0-2.4s**: Sottotitolo fade in
+6. **2.5-2.8s**: CTAButton appare con fade + scale 0.95→1
 
-### Struttura
-```
-[Ghost watermark "FC" enorme, opacità 3%]
+**Parallax sullo scroll:**
+- Il testo nome si muove verso l'alto (`translateY: scrollY * -0.3`)
+- L'opacità sfuma da 1 a 0 nel primo 30% dello scroll
+- Effetto: profondità cinematografica, il contenuto ha "peso"
 
-INIZIA DA QUI (label accent)
+**Linea verticale decorativa** (1px, accent, opacity 10%): appare dopo 3s, si estende 80px sotto l'hero. Suggerisce "scrolla" senza essere una freccia bouncing.
 
-Parliamo del       ← Cormorant italic enorme
-tuo caso.
+Layout: `min-h-[85vh]`, centrato verticalmente, `pt-16` (compensa navbar fixed).
 
-Testo invito alla consulenza (2 righe, muted)
+### 6B. Chi Sono (`components/sections/ChiSono.tsx`)
+Due colonne: foto (5/12) + testo (7/12).
 
-[Scrivimi ──→]    ← CTA con freccia animata all'hover
+**Immagine — clip-path reveal + scale:**
+- Parte con `clipPath: "inset(100% 0 0 0)"` (nascosta dal basso)
+- Si anima a `clipPath: "inset(0% 0 0 0)"` in 1.2s
+- Easing: `[0.77, 0, 0.175, 1]` — l'effetto "cinematic reveal" dei siti premiati
+- Contemporaneamente: `scale: 1.15 → 1.0` (zoom out morbido)
+- La cornice accent sfalsata (-3px top/left) appare 0.3s DOPO l'immagine (delay 1.5s)
 
-+39 349 163 5839  |  francescacicalese1@gmail.com  |  Via Sabotino, 00195 Roma
+**Testo:** SectionLabel → H2 con TextReveal → paragrafo → link "Scopri di più" con freccia animata.
 
-© 2026 Avv. Francesca Cicalese · P.IVA XXXXX    Privacy · Cookie
-```
+### 6C. Servizi (`components/sections/Servizi.tsx`)
+Griglia 3 colonne (1 su mobile). Ogni card wrappata in `SpotlightCard`:
+- Numero decorativo (01, 02, 03) in `text-faint`
+- Titolo Inter, font-medium
+- Linea accent 24px (opacity 40%)
+- Descrizione text-sm text-muted
+- Hover: bordo più visibile + translateY -1px
+- Spotlight: luce radiale segue il mouse su ogni card
+- Stagger FadeIn 0.1s tra le card
 
-**Nessun link di navigazione ripetuti** — se sei arrivato in fondo, conosci già il sito.
+### 6D. Testimonianze (`components/sections/Testimonianze.tsx`)
+Carousel con cambio automatico ogni 6s:
+- **Transizione blur**: il testo esce con `blur(4px)` + `translateY: -20px`, entra con `blur(4px→0)` + `translateY: 20px→0`
+- La virgoletta `"` decorativa "respira" (scale 0.95→1→0.95) durante le transizioni
+- Dot attivi: da cerchio 6px a pillola 24px con `rounded-full`
+- Reset timer su interazione manuale
 
----
-
-## 7. SISTEMA DI ANIMAZIONI
-
-### FadeIn (componente globale)
-`components/ui/FadeIn.tsx` — wrapper riutilizzabile per **qualsiasi elemento**.
-
-```tsx
-<FadeIn delay={0.2} direction="up">
-  <h2>Qualsiasi cosa</h2>
-</FadeIn>
-```
-
-Parametri disponibili:
-- `delay`: secondi di ritardo prima dell'animazione
-- `duration`: durata (default 0.6s)
-- `direction`: "up" | "down" | "left" | "right" | "none"
-
-Tecnologia: `useInView` di Framer Motion con `once: true` — si anima una sola volta al primo ingresso nel viewport, non si re-anima scrollando su.
-
-### Easing custom usato ovunque
-`[0.22, 1, 0.36, 1]` — cubic-bezier custom. Parte lentamente, accelera nel mezzo, rallenta morbidamente alla fine. Molto più elegante di `ease-out` standard.
-
-### Animazioni in uso
-| Elemento | Animazione | Parametri |
-|---|---|---|
-| Navbar ingresso | Fade da sopra | y: -80→0, opacity 0→1, 0.7s |
-| Link navbar stagger | Appaiono uno per uno | stagger 0.08s |
-| Overlay menu | Fade + link da sinistra | opacity 0→1 + x: -40→0 |
-| Titolo hero | Parola per parola + skew | stagger 0.18s, skewY 4→0 |
-| Linea separatore | Estensione orizzontale | scaleX 0→1, origin-left |
-| Indicatore scroll | Bounce verticale | y: 0→8→0, loop infinito |
-| Tutti gli altri | FadeIn dal basso | delay variabile per sezione |
-| Hover link nav overlay | Cambio colore | transition 300ms |
-| CTA "Scrivimi" footer | Freccia si allunga | w: 0→6, hover group |
+### 6E. CTA (`components/sections/CTASection.tsx`)
+Sfondo `bg-surface` per separazione visiva:
+- H2 "Parliamo del tuo caso." con TextReveal
+- **Bilancia parallax**: l'immagine bilancia.png si muove in parallax inverso (`translateY: ±30px`), ruota leggermente (`rotate: ±3deg`), e l'opacità sale da 2% a 4% quando la sezione è centrata nel viewport
 
 ---
 
-## 8. IMMAGINI DISPONIBILI
-
-| File | Descrizione | Uso previsto |
-|---|---|---|
-| `public/images/francesca-toga.png` | Francesca in toga nera con cravatta bianca, all'interno della Corte di Cassazione di Roma. Sfondo caldo (marmo, porta in legno). Foto verticale. | Hero section (principale) + Chi Sono |
-| `public/images/francesca-esterno.png` | Francesca in toga nera all'esterno, accanto a una statua classica bianca (zona Palazzo di Giustizia, Roma). Luce naturale, atmosfera più soft. | Chi Sono (secondaria) |
-| `public/images/bilancia.png` | Bilancia della giustizia dorata su cerchio nero con bordo dorato. Stile clipart premium. | Elemento decorativo semitrasparente (watermark, icona) |
-
----
-
-## 9. STRUTTURA FILE DEL PROGETTO
-
-```
-/
-├── app/
-│   ├── layout.tsx          ← Font, lang="it", metadata SEO, Navbar+Footer
-│   ├── page.tsx            ← Importa Hero (attualmente solo Hero)
-│   └── globals.css         ← Palette @theme Tailwind v4, aurora, noise, scroll
-│
-├── components/
-│   ├── layout/
-│   │   ├── Navbar.tsx      ← "use client" — overlay menu full-screen
-│   │   └── Footer.tsx      ← Server Component — closing message
-│   ├── ui/
-│   │   └── FadeIn.tsx      ← "use client" — wrapper animazione scroll
-│   └── sections/
-│       └── Hero.tsx        ← "use client" — hero con foto + animazioni
-│
-├── data/
-│   ├── siteConfig.ts       ← Nome, telefono, email, indirizzo, navLinks
-│   ├── servizi.ts          ← Array 4 servizi (penale, famiglia, civile, contratti)
-│   └── testimonianze.ts    ← Array 3 testimonianze placeholder
-│
-└── public/
-    └── images/
-        ├── francesca-toga.png
-        ├── francesca-esterno.png
-        └── bilancia.png
-```
+## 7. Navbar (`components/layout/Navbar.tsx`)
+- Fixed, `z-50`, `h-16`
+- Trasparente → `bg-bg/80 + backdrop-blur-md` dopo 40px di scroll
+- Desktop: nome a sinistra, 4 link a destra
+- Mobile: hamburger (2 linee → X), panel slide down
+- **Scroll progress indicator**: linea 1px `bg-accent/40` alla base della navbar, width 0→100% in base allo scroll (usa `useScroll` + `useSpring` di Framer Motion)
 
 ---
 
-## 10. STATO AVANZAMENTO — QUALE STEP SIAMO
+## 8. Micro-interazioni
 
-| Step | Cosa | Stato |
-|---|---|---|
-| **1** | Setup: font, colori, data files, layout root | ✅ Completato |
-| **2** | Navbar + Footer | ✅ Completato (con overlay full-screen) |
-| **3** | Hero section | ✅ Completato |
-| **4** | Homepage: Chi Sono preview + Servizi | ⬜ Prossimo |
-| **5** | Homepage: Testimonianze + CTA finale | ⬜ Da fare |
-| **6** | Pagina /chi-sono | ⬜ Da fare |
-| **7** | Pagina /servizi | ⬜ Da fare |
-| **8** | Pagina /recensioni | ⬜ Da fare |
-| **9** | Pagina /contatti + form email | ⬜ Da fare |
-| **10** | SEO completo + Framer Motion finale + Deploy Vercel | ⬜ Da fare |
-
-**Siamo alla fine dello Step 3.** Il prossimo è lo Step 4.
+| Elemento        | Effetto hover/active                                    |
+|-----------------|--------------------------------------------------------|
+| Link navbar     | Linea accent `scaleX(0→1)` da sinistra, transform-origin: left |
+| CTAButton       | Border accent + fill 6% da sinistra + translateY -2px + shadow `rgba(91,141,239,0.15)` |
+| CTAButton click | `scale: 0.98` per 100ms (feedback tattile)             |
+| Link "Scopri"   | Freccia → si sposta 4px a destra                       |
+| Footer link     | `translateX: 0→4px` in 300ms                           |
+| Card servizi    | Border-hover + translateY -4px + luce spotlight mouse  |
+| Dot carousel    | Da cerchio 6px a pillola 24px                          |
 
 ---
 
-## 11. DOMANDE APERTE PER IL REVISORE
-
-1. **Navbar overlay vs classica** — L'overlay full-screen è più premium ma richiede un click in più. Per un pubblico che cerca un avvocato (spesso anziani, meno digitali), è la scelta giusta o meglio una navbar classica con link sempre visibili?
-
-2. **Hero con foto grande** — La foto di Francesca in toga occupa tutta la metà destra dell'hero su desktop, full-screen mobile. Il committente la trova "un po' spaventosa". Alternativa: foto più piccola, oppure foto nella sezione Chi Sono e hero solo tipografica?
-
-3. **Foto nell'hero: quale?** — La foto con la toga all'interno della Corte (cupa, autorevole) oppure quella all'esterno con la statua (più luminosa, meno intimidatoria)?
-
-4. **Aree di pratica** — Attualmente sono 4: Diritto Penale, Famiglia e Minori, Diritto Civile, Consulenza Contrattuale. Il committente ha confermato penale + famiglia/minori + civile. I contratti restano?
-
-5. **Tono generale** — "Parliamo del tuo caso" nel footer — piace. Stesso tono per il resto del sito?
+## 9. Mobile Rules
+- Layout: tutto stacked, 1 colonna
+- Font sizes: scalano da `text-5xl` a `text-3xl`
+- Padding: `px-5` (mobile) → `px-12` (desktop)
+- Cards: `p-8` su mobile, `p-10` su desktop
+- Menu: panel slide down con divide-y
+- Immagini: `aspect-[3/4]` su mobile
 
 ---
 
-## 12. TECH NOTE (per il developer)
+## 10. Immagini Disponibili
 
-- **Next.js 15** App Router, TypeScript, **Tailwind v4** (no tailwind.config.ts — tutto in globals.css con `@theme`)
-- **Framer Motion** installato per tutte le animazioni
-- `"use client"` usato solo dove serve (Navbar, Hero, FadeIn) — tutto il resto è Server Component per SEO ottimale
-- I font (Cormorant Garamond + Inter) sono caricati da Google tramite `next/font/google` — zero latenza, zero richieste esterne a runtime
-- Deploy target: **Vercel** collegato al repo GitHub
-- Dominio: **francescacicalese.it** (da acquistare)
-- Il form contatti (Step 9) userà **Resend** con Next.js Server Actions per inviare email
+| File                    | Descrizione                                  | Usata in      |
+|-------------------------|----------------------------------------------|---------------|
+| `francesca-esterno.png` | Foto esterna con statua classica, Roma       | Chi Sono      |
+| `francesca-toga.png`    | Foto in toga, Corte di Cassazione             | (riservata)   |
+| `bilancia.png`          | Bilancia della giustizia                     | CTA (watermark parallax 2-4%) |
+
+---
+
+## 11. Stack Tecnico Animazioni
+- **Framer Motion**: useInView, useScroll, useTransform, useSpring, AnimatePresence, motion.div
+- **Lenis**: smooth scroll con momentum naturale
+- **CSS**: transizioni GPU-only (transform, opacity, filter, clip-path)
+- **Easing personalizzati**: `[0.22, 1, 0.36, 1]`, `[0.215, 0.61, 0.355, 1]`, `[0.77, 0, 0.175, 1]`
+
+---
+
+## 12. Cosa è Cambiato rispetto alla v2
+
+| Prima (v2)                    | Ora (v3)                                     |
+|-------------------------------|----------------------------------------------|
+| Scroll nativo browser         | Lenis smooth scroll con momentum             |
+| Testo appare con semplice FadeIn | TextReveal parola per parola                |
+| Hero statico, tipografico     | Hero cinematografico con timeline orchestrata + parallax |
+| Immagine Chi Sono fade-in     | Clip-path reveal + scale + cornice sfalsata  |
+| Card servizi flat             | SpotlightCard con luce che segue il mouse    |
+| Testimonianze fade semplice   | Transizioni con blur + virgoletta "respira"  |
+| Bilancia statica 2%           | Bilancia con parallax + rotazione + opacità variabile |
+| Nessun progress indicator     | Linea accent sotto navbar che segue lo scroll |
+| Link hover = width animata    | Link hover = scaleX (più GPU-performante)    |
+| CTAButton solo fill           | + translateY + shadow + active scale feedback |
+| Footer link statici           | translateX shift al hover                    |
+| Nessuna page transition       | PageTransition con fade+translateY           |
+
+---
+
+## 13. Domande Aperte per il Reviewer
+
+1. **Timing dell'hero**: la sequenza dura ~3s. Troppo? Troppo poco?
+2. **TextReveal vs FadeIn**: c'è il rischio di sovraccaricare il TextReveal? Al momento è su Hero, H2 Chi Sono, e H2 CTA.
+3. **SpotlightCard mobile**: su touch screen non c'è hover. Le card sono comunque eleganti senza il gradiente?
+4. **Lenis + Next.js navigation**: il back/forward del browser potrebbe sentirsi diverso. Monitorare.
+5. **Performance**: le animazioni sono tutte GPU (transform, opacity, filter, clip-path). Nessun layout shift.
