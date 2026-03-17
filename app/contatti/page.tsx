@@ -7,9 +7,15 @@ import ContactForm from "@/components/ui/ContactForm"
 import { siteConfig } from "@/data/siteConfig"
 
 export const metadata: Metadata = {
-  title: "Contatti",
+  title: "Contatti | Studio Legale Avv. Francesca Cicalese — Via Sabotino 46, Roma",
   description:
-    "Contatta l'Avv. Francesca Cicalese — Studio Legale a Roma. Scrivi un messaggio, chiama o vieni a trovarci in Via Sabotino, Prati.",
+    "Contatta lo Studio Legale dell'Avv. Francesca Cicalese. Via Sabotino 46, Roma zona Prati. Telefono: +39 349 163 5839. Scrivi un messaggio per richiedere una consulenza legale.",
+  alternates: { canonical: "https://www.francescacicalese.it/contatti" },
+  openGraph: {
+    title: "Contatti | Studio Legale Avv. Francesca Cicalese — Roma",
+    description: "Via Sabotino 46, 00195 Roma zona Prati. Telefono: +39 349 163 5839. Richiedi una consulenza.",
+    url: "https://www.francescacicalese.it/contatti",
+  },
 }
 
 const orari = [

@@ -7,9 +7,15 @@ import SectionLabel from "@/components/ui/SectionLabel"
 import CTAButton from "@/components/ui/CTAButton"
 
 export const metadata: Metadata = {
-  title: "Chi Sono",
+  title: "Chi Sono | Avv. Francesca Cicalese — Avvocato Roma Prati",
   description:
-    "Avv. Francesca Cicalese — avvocato penalista e civilista a Roma. Oltre dieci anni di esperienza nel foro di Roma in diritto penale, diritto di famiglia e diritto civile.",
+    "Scopri il percorso professionale dell'Avv. Francesca Cicalese. Laureata in giurisprudenza, iscritta all'Ordine degli Avvocati di Roma. Specializzata in diritto penale, famiglia, civile e lavoro.",
+  alternates: { canonical: "https://www.francescacicalese.it/chi-sono" },
+  openGraph: {
+    title: "Chi Sono | Avv. Francesca Cicalese — Avvocato Roma",
+    description: "Avvocato a Roma con esperienza in diritto penale, diritto di famiglia, civile e lavoro. Iscritta all'Ordine degli Avvocati di Roma.",
+    url: "https://www.francescacicalese.it/chi-sono",
+  },
 }
 
 const valori = [

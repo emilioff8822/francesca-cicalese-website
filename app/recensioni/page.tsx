@@ -7,9 +7,15 @@ import CTAButton from "@/components/ui/CTAButton"
 import { testimonianze } from "@/data/testimonianze"
 
 export const metadata: Metadata = {
-  title: "Recensioni",
+  title: "Recensioni Clienti | Avv. Francesca Cicalese — Studio Legale Roma",
   description:
-    "Le testimonianze dei clienti dell'Avv. Francesca Cicalese — Studio Legale a Roma. Scopri cosa dicono di lei chi si è affidato alla sua assistenza legale.",
+    "Leggi le testimonianze dei clienti dell'Avv. Francesca Cicalese, avvocato a Roma zona Prati. Opinioni e recensioni sullo studio legale per diritto penale, famiglia, civile e lavoro.",
+  alternates: { canonical: "https://www.francescacicalese.it/recensioni" },
+  openGraph: {
+    title: "Recensioni | Avv. Francesca Cicalese — Studio Legale Roma",
+    description: "Le testimonianze dei clienti dello Studio Legale Cicalese, Roma Prati.",
+    url: "https://www.francescacicalese.it/recensioni",
+  },
 }
 
 export default function Recensioni() {

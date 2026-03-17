@@ -52,4 +52,19 @@ export const servizi: Servizio[] = [
       "Controversie condominiali e diritti reali",
     ],
   },
+  {
+    id: "diritto-lavoro",
+    titolo: "Diritto del Lavoro",
+    descrizione:
+      "Tutela del lavoratore e del datore di lavoro. Licenziamenti, mobbing, contratti e vertenze sindacali.",
+    descrizioneEstesa:
+      "Assisto lavoratori e aziende in tutte le controversie di natura giuslavoristica. Dalla verifica della legittimità di un licenziamento alla gestione di una vertenza sindacale, garantisco una tutela efficace e tempestiva dei diritti di entrambe le parti, sempre nel rispetto della normativa vigente.",
+    punti: [
+      "Licenziamento illegittimo e reintegro",
+      "Mobbing e molestie sul luogo di lavoro",
+      "Contratti di lavoro e mansioni",
+      "Vertenze per retribuzioni non corrisposte",
+      "Accordi sindacali e conciliazioni",
+    ],
+  },
 ]
