@@ -10,15 +10,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30)
+    const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-
-  useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 768) setMenuOpen(false) }
-    window.addEventListener("resize", onResize)
-    return () => window.removeEventListener("resize", onResize)
   }, [])
 
   useEffect(() => {
@@ -27,148 +21,136 @@ export default function Navbar() {
   }, [menuOpen])
 
   return (
-    // La navbar entra dall'alto con fade-in al caricamento della pagina
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-surface-high/95 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <nav
-        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5"
-        aria-label="Navigazione principale"
+    <>
+      {/* ── Strip navbar ── sottile, non invasiva ─────────────────────── */}
+      <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
+          scrolled ? "bg-bg/80 backdrop-blur-xl" : "bg-transparent"
+        }`}
       >
-        {/* Logo — corsivo elegante, leggero glow al hover */}
-        <Link
-          href="/"
-          className="font-heading text-xl italic text-text transition-all duration-300 hover:text-accent"
-          style={{ textShadow: "0 0 0px transparent" }}
-          onMouseEnter={(e) => (e.currentTarget.style.textShadow = "0 0 20px rgba(77,142,240,0.3)")}
-          onMouseLeave={(e) => (e.currentTarget.style.textShadow = "0 0 0px transparent")}
-          onClick={() => setMenuOpen(false)}
-        >
-          Avv. Francesca Cicalese
-        </Link>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:py-6">
 
-        {/* Link desktop — con stagger di ingresso */}
-        <motion.ul
-          className="hidden md:flex items-center gap-10"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } },
-          }}
-          role="list"
-        >
-          {siteConfig.navLinks.map((link) => (
-            <motion.li
-              key={link.href}
-              variants={{
-                hidden:  { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-              }}
-            >
-              <Link
-                href={link.href}
-                className="group relative font-sans text-xs uppercase tracking-widest text-muted transition-colors duration-300 hover:text-text"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-              </Link>
-            </motion.li>
-          ))}
-        </motion.ul>
-
-        {/* CTA desktop */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="hidden md:block"
-        >
+          {/* Logo */}
           <Link
-            href="/contatti"
-            className="font-sans text-xs uppercase tracking-widest text-text border border-border px-5 py-2.5 transition-all duration-300 hover:border-accent hover:text-accent"
+            href="/"
+            onClick={() => setMenuOpen(false)}
+            className="font-heading text-lg italic text-text/90 hover:text-text transition-colors duration-500"
           >
-            Contattami
+            Avv. Francesca Cicalese
           </Link>
-        </motion.div>
 
-        {/* Hamburger mobile */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden flex flex-col items-center justify-center w-8 h-8 gap-1.5"
-          aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
-          aria-expanded={menuOpen}
-        >
-          <span className={`block h-px w-6 bg-text transition-all duration-300 origin-center ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
-          <span className={`block h-px w-6 bg-text transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
-          <span className={`block h-px w-6 bg-text transition-all duration-300 origin-center ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
-        </button>
-      </nav>
+          {/* Destra: CTA + bottone menu */}
+          <div className="flex items-center gap-6">
+            <Link
+              href="/contatti"
+              className="hidden sm:block font-sans text-xs uppercase tracking-widest text-muted hover:text-accent transition-colors duration-300"
+            >
+              Contattami
+            </Link>
 
-      {/* Menu mobile con AnimatePresence per ingresso/uscita fluida */}
+            {/* Bottone Menu — apre l'overlay */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex items-center gap-2.5 group"
+              aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
+              aria-expanded={menuOpen}
+            >
+              <span className="font-sans text-xs uppercase tracking-widest text-muted group-hover:text-text transition-colors duration-300">
+                {menuOpen ? "Chiudi" : "Menu"}
+              </span>
+              {/* Icona hamburger → X */}
+              <div className="flex flex-col gap-1.5 w-5">
+                <span className={`block h-px bg-text transition-all duration-400 origin-center ${menuOpen ? "translate-y-[5px] rotate-45 w-full" : "w-full"}`} />
+                <span className={`block h-px bg-text transition-all duration-400 ${menuOpen ? "opacity-0 w-0" : "w-3/4"}`} />
+              </div>
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* ── Overlay menu full-screen ───────────────────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden overflow-hidden bg-surface-high border-b border-border"
+            key="overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-40 bg-bg/98 backdrop-blur-2xl flex flex-col justify-between px-8 md:px-16 py-28 overflow-hidden"
           >
-            <motion.ul
-              className="flex flex-col px-6 py-10 gap-8"
+            {/* Watermark decorativo */}
+            <span
+              className="absolute right-0 bottom-0 font-heading italic text-text/[0.03] pointer-events-none select-none leading-none"
+              style={{ fontSize: "clamp(120px, 25vw, 320px)" }}
+              aria-hidden="true"
+            >
+              Legge
+            </span>
+
+            {/* Link di navigazione — grandi, con counter */}
+            <motion.nav
               initial="hidden"
               animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
-              }}
-              role="list"
+              exit="hidden"
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } } }}
+              aria-label="Menu principale"
             >
-              {siteConfig.navLinks.map((link) => (
-                <motion.li
-                  key={link.href}
-                  variants={{
-                    hidden:  { opacity: 0, x: -20 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
-                  }}
-                >
-                  <Link
-                    href={link.href}
-                    className="font-sans text-sm uppercase tracking-widest text-muted hover:text-text transition-colors duration-300"
-                    onClick={() => setMenuOpen(false)}
+              <ul className="space-y-1" role="list">
+                {siteConfig.navLinks.map((link, i) => (
+                  <motion.li
+                    key={link.href}
+                    variants={{
+                      hidden: { opacity: 0, x: -40 },
+                      visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+                    }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.li>
-              ))}
-              <motion.li
-                className="pt-4 border-t border-border"
-                variants={{
-                  hidden:  { opacity: 0 },
-                  visible: { opacity: 1, transition: { duration: 0.3 } },
-                }}
-              >
-                <Link
-                  href="/contatti"
-                  className="inline-flex font-sans text-xs uppercase tracking-widest text-text border border-border px-6 py-3 hover:border-accent hover:text-accent transition-all duration-300"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Contattami
-                </Link>
-              </motion.li>
-            </motion.ul>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="group flex items-baseline gap-5 py-3 border-b border-border/40 hover:border-accent/40 transition-colors duration-300"
+                    >
+                      <span className="font-sans text-xs text-muted/50 tabular-nums w-5">
+                        0{i + 1}
+                      </span>
+                      <span className="font-heading italic text-5xl md:text-7xl text-text/80 group-hover:text-text transition-colors duration-300 leading-tight">
+                        {link.label}
+                      </span>
+                      <span className="ml-auto font-sans text-xs text-muted/40 group-hover:text-accent transition-colors duration-300 hidden sm:block">
+                        →
+                      </span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.nav>
+
+            {/* Info contatto in basso */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4 sm:gap-10 sm:items-center"
+            >
+              <a href={`tel:${siteConfig.phone}`} className="font-sans text-sm text-muted hover:text-text transition-colors duration-300">
+                {siteConfig.phone}
+              </a>
+              <span className="hidden sm:block w-px h-3 bg-border" />
+              <a href={`mailto:${siteConfig.email}`} className="font-sans text-sm text-muted hover:text-text transition-colors duration-300">
+                {siteConfig.email}
+              </a>
+              <span className="hidden sm:block w-px h-3 bg-border" />
+              <span className="font-sans text-sm text-muted/60">
+                {siteConfig.address}, {siteConfig.city}
+              </span>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   )
 }
