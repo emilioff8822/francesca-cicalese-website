@@ -12,7 +12,7 @@ export const testimonianze: Testimonianza[] = [
     testo:
       "Professionale, competente e sempre disponibile. Ha gestito il mio caso con grande attenzione e mi ha tenuto informato in ogni fase del procedimento. Risultato eccellente.",
     nome: "Marco R.",
-    citta: "Napoli",
+    citta: "Roma",
     servizio: "Diritto Civile",
   },
   {
@@ -20,7 +20,7 @@ export const testimonianze: Testimonianza[] = [
     testo:
       "Mi ha guidato in un momento molto difficile con empatia e determinazione. Ha saputo tutelare i miei figli e trovare la soluzione migliore per tutta la famiglia. Grazie di cuore.",
     nome: "Laura S.",
-    citta: "Caserta",
+    citta: "Roma",
     servizio: "Diritto di Famiglia",
   },
   {
@@ -28,7 +28,7 @@ export const testimonianze: Testimonianza[] = [
     testo:
       "Consiglio vivamente l'Avv. Cicalese. Preparata, trasparente e sempre presente. Ha gestito il mio licenziamento con grande efficacia e ho ottenuto il risarcimento che meritavo.",
     nome: "Giuseppe M.",
-    citta: "Salerno",
+    citta: "Roma",
     servizio: "Diritto del Lavoro",
   },
 ];

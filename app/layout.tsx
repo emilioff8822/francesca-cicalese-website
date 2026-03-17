@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Avv. Francesca Cicalese",
   },
   description:
-    "Studio legale a Napoli. Assistenza in diritto civile, diritto di famiglia, diritto del lavoro e consulenza contrattuale.",
+    "Studio legale a Roma. Assistenza in diritto civile, diritto di famiglia, diritto del lavoro e consulenza contrattuale.",
   metadataBase: new URL("https://francescacicalese.it"),
   openGraph: {
     type: "website",

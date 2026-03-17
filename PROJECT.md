@@ -7,7 +7,7 @@
 
 ## 🎯 Obiettivo
 
-Sito vetrina professionale per **Avv. Francesca Cicalese**, avvocatessa con studio a Napoli.
+Sito vetrina professionale per **Avv. Francesca Cicalese**, avvocatessa con studio a Roma (Prati — Via Sabotino, 00195).
 Sito **interamente statico** (no backend, no database). Tutti i contenuti sono hardcoded in file TypeScript dentro `/data`.
 
 - Dominio target: **francescacicalese.it** *(da acquistare — istruzioni in fondo)*
@@ -116,7 +116,7 @@ Partiamo dallo stesso DNA visivo di premingerlaw.com ma aggiungiamo:
 │  HERO — sfondo bianco caldo         │
 │  [testo sx]      [foto placeholder dx] │
 │  "Avv. Francesca Cicalese"          │
-│  "Avvocato - Studio Legale Napoli"  │
+│  "Avvocato - Studio Legale Roma"    │
 │  [CTA bottone oro]                  │
 │  Decorazione: linea sottile oro a sx │
 ├─────────────────────────────────────┤
@@ -328,7 +328,7 @@ Quando aggiungeremo Resend per il form contatti:
 
 ```
 Nome:      Avv. Francesca Cicalese
-Studio:    Napoli
+Studio:    Roma (Via Sabotino, 00195)
 Telefono:  [DA INSERIRE]
 Email:     [DA INSERIRE]
 Indirizzo: [DA INSERIRE]

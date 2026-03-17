@@ -6,16 +6,16 @@ export const siteConfig = {
 
   phone: "+39 XXX XXX XXXX",
   email: "info@francescacicalese.it",
-  address: "Via Roma 1",
-  city: "Napoli",
-  cap: "80100",
+  address: "Via Sabotino",
+  city: "Roma",
+  cap: "00195",
   piva: "XXXXXXXXXXXXXXXXXX",
 
   url: "https://francescacicalese.it",
 
-  seoTitle: "Avv. Francesca Cicalese | Studio Legale Napoli",
+  seoTitle: "Avv. Francesca Cicalese | Studio Legale Roma",
   seoDescription:
-    "Studio legale a Napoli. Assistenza in diritto civile, diritto di famiglia, diritto del lavoro e consulenza contrattuale. Avvocato Francesca Cicalese.",
+    "Studio legale a Roma. Assistenza in diritto civile, diritto di famiglia, diritto del lavoro e consulenza contrattuale. Avvocato Francesca Cicalese.",
 
   navLinks: [
     { label: "Chi Sono", href: "/chi-sono" },
