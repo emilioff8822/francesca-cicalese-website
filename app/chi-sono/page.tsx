@@ -73,18 +73,18 @@ export default function ChiSono() {
 
                 <FadeIn delay={0.2}>
                   <p className="text-base text-muted leading-[1.8] mb-6">
-                    Sono un avvocato laureata in Giurisprudenza a Roma, iscritta all&apos;Ordine
-                    degli Avvocati di Roma. Con oltre quattro anni di esperienza nel foro capitolino,
-                    ho maturato una solida preparazione in diritto penale, diritto di famiglia e
-                    diritto civile.
+                    Sono un avvocato laureata in Giurisprudenza presso l&apos;Università degli Studi
+                    di Roma Tre, iscritta all&apos;Ordine degli Avvocati di Roma. Con oltre quattro
+                    anni di esperienza nel foro capitolino, ho maturato una solida preparazione
+                    in diritto penale, diritto di famiglia e diritto civile.
                   </p>
                 </FadeIn>
 
                 <FadeIn delay={0.3}>
                   <p className="text-base text-muted leading-[1.8] mb-6">
-                    La mia formazione si è arricchita attraverso diverse esperienze presso studi
-                    legali di Roma, dove ho avuto modo di seguire procedimenti complessi e di
-                    costruire un metodo di lavoro rigoroso e orientato al risultato.
+                    La mia formazione si è arricchita attraverso diverse esperienze presso vari
+                    studi legali di Roma, dove ho avuto modo di seguire procedimenti complessi
+                    e di costruire un metodo di lavoro rigoroso e orientato al risultato.
                   </p>
                 </FadeIn>
 
