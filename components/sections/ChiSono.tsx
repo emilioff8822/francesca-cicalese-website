@@ -60,7 +60,7 @@ export default function ChiSono() {
 
             <FadeIn delay={0.2}>
               <p className="text-base text-muted leading-[1.8] mb-8 max-w-lg">
-                Con oltre quattro anni di esperienza nel foro di Roma, offro assistenza
+                Con oltre otto anni di esperienza nel foro di Roma, offro assistenza
                 legale personalizzata in diritto penale, diritto di famiglia e diritto
                 civile. Ogni caso è unico e merita un approccio su misura.
               </p>

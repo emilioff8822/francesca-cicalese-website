@@ -74,7 +74,7 @@ export default function ChiSono() {
                 <FadeIn delay={0.2}>
                   <p className="text-base text-muted leading-[1.8] mb-6">
                     Sono un avvocato laureata in Giurisprudenza presso l&apos;Università degli Studi
-                    di Roma Tre, iscritta all&apos;Ordine degli Avvocati di Roma. Con oltre quattro
+                    di Roma Tre, iscritta all&apos;Ordine degli Avvocati di Roma. Con oltre otto
                     anni di esperienza nel foro capitolino, ho maturato una solida preparazione
                     in diritto penale, diritto di famiglia e diritto civile.
                   </p>
