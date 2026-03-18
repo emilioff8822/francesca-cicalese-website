@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Avv. Francesca Cicalese" }],
   verification: {
-    google: "ZLj_N-8CS_qMkXy",
+    google: "ZLj_N-8CS_qMkXyHP0FLwJkd_OGkfG_l77rHH98gO0s",
   },
   openGraph: {
     type: "website",
