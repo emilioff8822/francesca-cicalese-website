@@ -53,8 +53,9 @@ export default function ChiSono() {
                   <Image
                     src="/images/francesca-toga.png"
                     alt="Avv. Francesca Cicalese in toga alla Corte di Cassazione, Roma"
-                    width={480}
-                    height={640}
+                    width={960}
+                    height={1280}
+                    quality={90}
                     className="relative rounded-lg object-cover aspect-[3/4] w-full"
                     priority
                   />

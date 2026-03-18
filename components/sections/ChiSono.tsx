@@ -41,8 +41,9 @@ export default function ChiSono() {
               <Image
                 src="/images/francesca-esterno.png"
                 alt="Avv. Francesca Cicalese fuori dal Palazzo di Giustizia, Roma"
-                width={480}
-                height={640}
+                width={960}
+                height={1280}
+                quality={90}
                 className="w-full aspect-[3/4] object-cover"
               />
             </motion.div>
