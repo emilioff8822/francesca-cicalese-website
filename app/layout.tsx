@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     "consulenza legale Roma",
   ],
   authors: [{ name: "Avv. Francesca Cicalese" }],
+  verification: {
+    google: "ZLj_N-8CS_qMkXy",
+  },
   openGraph: {
     type: "website",
     locale: "it_IT",
