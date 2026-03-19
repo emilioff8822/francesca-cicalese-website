@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Scale, Users, FileText, Briefcase } from "lucide-react"
 import PageTransition from "@/components/providers/PageTransition"
 import FadeIn from "@/components/ui/FadeIn"
 import TextReveal from "@/components/ui/TextReveal"
@@ -20,42 +21,10 @@ export const metadata: Metadata = {
 }
 
 const watermarks: Record<string, React.ReactNode> = {
-  "diritto-penale": (
-    <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      <line x1="80" y1="20" x2="80" y2="140" />
-      <line x1="36" y1="38" x2="124" y2="38" />
-      <path d="M36 38 L16 80 Q36 100 56 80 Z" />
-      <path d="M124 38 L104 80 Q124 100 144 80 Z" />
-      <line x1="54" y1="140" x2="106" y2="140" />
-    </svg>
-  ),
-  "diritto-famiglia": (
-    <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      <circle cx="58" cy="52" r="18" />
-      <path d="M22 140 C22 112 38 96 58 96 C78 96 94 112 94 140" />
-      <circle cx="112" cy="60" r="13" />
-      <path d="M86 140 C86 118 97 104 112 104 C127 104 138 118 138 140" />
-    </svg>
-  ),
-  "diritto-civile": (
-    <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      <rect x="36" y="20" width="88" height="116" rx="4" />
-      <line x1="56" y1="52" x2="104" y2="52" />
-      <line x1="56" y1="72" x2="104" y2="72" />
-      <line x1="56" y1="92" x2="84" y2="92" />
-      <circle cx="104" cy="116" r="16" />
-      <line x1="96" y1="116" x2="112" y2="116" />
-      <line x1="104" y1="108" x2="104" y2="124" />
-    </svg>
-  ),
-  "diritto-lavoro": (
-    <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      <rect x="20" y="64" width="120" height="76" rx="6" />
-      <path d="M60 64 L60 44 Q60 36 68 36 L92 36 Q100 36 100 44 L100 64" />
-      <line x1="20" y1="96" x2="140" y2="96" />
-      <line x1="80" y1="80" x2="80" y2="112" />
-    </svg>
-  ),
+  "diritto-penale": <Scale size={200} strokeWidth={0.8} />,
+  "diritto-famiglia": <Users size={200} strokeWidth={0.8} />,
+  "diritto-civile": <FileText size={200} strokeWidth={0.8} />,
+  "diritto-lavoro": <Briefcase size={200} strokeWidth={0.8} />,
 }
 
 export default function Servizi() {
