@@ -106,7 +106,7 @@ export default function ContactForm() {
         <p className="text-sm text-red-600">{state.message}</p>
       )}
 
-      <div className="pt-2">
+      <div className="pt-2 flex justify-center">
         <button
           type="submit"
           disabled={pending}
