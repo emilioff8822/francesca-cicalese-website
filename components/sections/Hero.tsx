@@ -29,7 +29,7 @@ export default function Hero() {
         <div className="flex items-center justify-center md:justify-start gap-4 mb-10">
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: 60 }}
+            animate={{ width: 20 }}
             transition={{ duration: 0.6, delay: 0, ease: [0.22, 1, 0.36, 1] }}
             className="h-px bg-accent"
           />
