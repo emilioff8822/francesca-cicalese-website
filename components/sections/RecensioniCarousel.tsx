@@ -94,7 +94,7 @@ export default function RecensioniCarousel() {
                   {t.citta && <span className="text-muted font-normal"> · {t.citta}</span>}
                 </p>
                 {t.servizio && (
-                  <p className="text-xs text-accent/60 mt-1 uppercase tracking-[0.1em]">
+                  <p className="text-[10px] text-accent/50 mt-2 tracking-[0.12em]">
                     {t.servizio}
                   </p>
                 )}
