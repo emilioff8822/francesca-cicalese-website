@@ -104,7 +104,7 @@ export default function ChiSono() {
                   <p className="text-base text-muted leading-[1.8] mb-6">
                     La mia formazione si è arricchita attraverso diverse esperienze presso vari
                     studi legali di Roma, dove ho avuto modo di seguire procedimenti complessi
-                    e di costruire un metodo di lavoro rigoroso e orientato al risultato.
+                    e di costruire un metodo di lavoro rigoroso ed orientato al risultato.
                   </p>
                 </FadeIn>
 

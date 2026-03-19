@@ -44,7 +44,7 @@ export default function ChiSono() {
                 width={960}
                 height={1280}
                 quality={90}
-                className="w-full aspect-[3/4] object-cover"
+                className="w-full aspect-[1/1] object-cover object-top"
               />
             </motion.div>
           </div>
