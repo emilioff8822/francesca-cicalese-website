@@ -62,7 +62,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 2.5, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8"
         >
-          <CTAButton text="Contattami" href="/contatti" />
+          <CTAButton text="Contattami" href="/contatti" solid />
         </motion.div>
       </motion.div>
 

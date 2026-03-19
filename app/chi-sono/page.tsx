@@ -176,7 +176,7 @@ export default function ChiSono() {
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <CTAButton text="Contattami" href="/contatti" />
+              <CTAButton text="Contattami" href="/contatti" solid />
             </FadeIn>
           </div>
         </section>

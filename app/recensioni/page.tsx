@@ -68,7 +68,7 @@ export default function Recensioni() {
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <CTAButton text="Contattami" href="/contatti" />
+              <CTAButton text="Contattami" href="/contatti" solid />
             </FadeIn>
           </div>
         </section>
