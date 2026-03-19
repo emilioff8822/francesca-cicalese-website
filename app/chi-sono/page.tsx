@@ -116,7 +116,7 @@ export default function ChiSono() {
                   </p>
                 </FadeIn>
 
-                <FadeIn delay={0.5}>
+                <FadeIn delay={0.5} className="flex justify-center md:justify-start">
                   <CTAButton text="Contattami" href="/contatti" solid />
                 </FadeIn>
               </div>
