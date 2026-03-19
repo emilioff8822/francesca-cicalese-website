@@ -5,6 +5,7 @@ import TextReveal from "@/components/ui/TextReveal"
 import SectionLabel from "@/components/ui/SectionLabel"
 import CTAButton from "@/components/ui/CTAButton"
 import RecensioniCarousel from "@/components/sections/RecensioniCarousel"
+import { MessageSquareQuote } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Recensioni Clienti | Avv. Francesca Cicalese — Studio Legale Roma",
@@ -26,18 +27,33 @@ export default function Recensioni() {
         {/* Hero */}
         <section className="py-24 md:py-32" aria-label="Testimonianze clienti">
           <div className="mx-auto max-w-6xl px-5 md:px-12">
-            <SectionLabel text="Testimonianze" />
-            <FadeIn delay={0.1}>
-              <h1 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] max-w-2xl">
-                <TextReveal delay={0.2}>La fiducia dei clienti.</TextReveal>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.3}>
-              <p className="text-base text-muted leading-[1.7] max-w-lg mt-6">
-                Il miglior riscontro del lavoro svolto è la soddisfazione
-                di chi si è affidato alla mia assistenza nei momenti più difficili.
-              </p>
-            </FadeIn>
+            <div className="flex flex-row items-center justify-between gap-8">
+              <div className="flex-1">
+                <SectionLabel text="Testimonianze" />
+                <FadeIn delay={0.1}>
+                  <h1 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] max-w-2xl">
+                    <TextReveal delay={0.2}>La fiducia dei clienti.</TextReveal>
+                  </h1>
+                </FadeIn>
+                <FadeIn delay={0.3}>
+                  <p className="text-base text-muted leading-[1.7] max-w-lg mt-6">
+                    Il miglior riscontro del lavoro svolto è la soddisfazione
+                    di chi si è affidato alla mia assistenza nei momenti più difficili.
+                  </p>
+                </FadeIn>
+              </div>
+              <FadeIn delay={0.4} className="shrink-0">
+                <div
+                  className="w-14 h-14 md:w-20 md:h-20 rounded-xl flex items-center justify-center text-white"
+                  style={{
+                    background: "linear-gradient(135deg, #1e3050, #263d5e)",
+                    boxShadow: "0 6px 24px rgba(30, 48, 80, 0.25), 0 2px 6px rgba(30, 48, 80, 0.12)",
+                  }}
+                >
+                  <MessageSquareQuote className="w-7 h-7 md:w-10 md:h-10" strokeWidth={1.2} />
+                </div>
+              </FadeIn>
+            </div>
           </div>
         </section>
 

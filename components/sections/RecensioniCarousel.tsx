@@ -5,10 +5,14 @@ import { motion, AnimatePresence } from "framer-motion"
 import { testimonianze } from "@/data/testimonianze"
 
 const cardBg = [
-  "bg-white border-border/50",
-  "bg-[#EEF2FF] border-[#DDE3F0]",
-  "bg-[#F5F7FC] border-border/40",
-  "bg-[#E8EEFF] border-[#D4DCEF]",
+  "bg-[#EBF2FB] border-[#C8D9EE]",
+  "bg-[#E4EFF8] border-[#BAD0E8]",
+  "bg-[#EEF6FC] border-[#C4DCF0]",
+  "bg-[#DDE8F4] border-[#AECAE3]",
+  "bg-[#EAF1F9] border-[#C2D5EB]",
+  "bg-[#E0EBF6] border-[#B4CCDF]",
+  "bg-[#F0F7FD] border-[#C6DDF2]",
+  "bg-[#D9E6F2] border-[#A8C4DC]",
 ]
 
 export default function RecensioniCarousel() {
@@ -62,30 +66,29 @@ export default function RecensioniCarousel() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="relative min-h-[300px] md:min-h-[260px]">
+      <div className="overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            initial={{ opacity: 0, x: 60, filter: "blur(4px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, x: -60, filter: "blur(4px)" }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <div
-              className={`${style} border rounded-xl p-8 md:p-12 h-full flex flex-col justify-between gap-6 shadow-[0_2px_20px_rgba(30,48,80,0.04)] transition-shadow duration-500`}
+              className={`${style} border rounded-xl p-6 md:p-12 flex flex-col justify-between gap-6 shadow-[0_2px_20px_rgba(30,48,80,0.04)]`}
             >
               <div>
-                <div className="text-accent/20 text-6xl font-heading leading-none mb-4 select-none" aria-hidden="true">
+                <div className="text-accent/20 text-5xl md:text-6xl font-heading leading-none mb-2 select-none" aria-hidden="true">
                   &ldquo;
                 </div>
-                <blockquote className="font-heading text-xl md:text-2xl italic text-text leading-[1.6]">
+                <blockquote className="font-heading text-lg md:text-2xl italic text-text leading-[1.6]">
                   {t.testo}
+                  <span className="text-accent/20 not-italic">&rdquo;</span>
                 </blockquote>
               </div>
 
               <div>
-                <div className="w-8 h-px bg-accent/25 mb-3" />
                 <p className="text-sm font-medium text-text">
                   {t.nome}
                   {t.citta && <span className="text-muted font-normal"> · {t.citta}</span>}
@@ -102,7 +105,7 @@ export default function RecensioniCarousel() {
       </div>
 
       {/* Dots */}
-      <div className="flex justify-center gap-2.5 mt-10">
+      <div className="flex justify-center gap-2.5 mt-8">
         {testimonianze.map((_, i) => (
           <button
             key={i}

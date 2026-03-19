@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { GraduationCap, Clock, ShieldCheck } from "lucide-react"
+import { GraduationCap, Clock, ShieldCheck, UserRound } from "lucide-react"
 import PageTransition from "@/components/providers/PageTransition"
 import FadeIn from "@/components/ui/FadeIn"
 import TextReveal from "@/components/ui/TextReveal"
@@ -68,7 +68,20 @@ export default function ChiSono() {
 
               {/* Testo */}
               <div className="w-full md:w-7/12">
-                <SectionLabel text="Chi Sono" />
+                <div className="flex items-center justify-between gap-4 mb-0">
+                  <SectionLabel text="Chi Sono" />
+                  <FadeIn delay={0.4} className="shrink-0">
+                    <div
+                      className="w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-white"
+                      style={{
+                        background: "linear-gradient(135deg, #1e3050, #263d5e)",
+                        boxShadow: "0 6px 24px rgba(30, 48, 80, 0.25), 0 2px 6px rgba(30, 48, 80, 0.12)",
+                      }}
+                    >
+                      <UserRound className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.2} />
+                    </div>
+                  </FadeIn>
+                </div>
 
                 <FadeIn delay={0.1}>
                   <h1 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] mb-8">

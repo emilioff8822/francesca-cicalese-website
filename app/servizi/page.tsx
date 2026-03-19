@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Scale, Users, FileText, Briefcase } from "lucide-react"
+import { Scale, Users, FileText, Briefcase, Gavel } from "lucide-react"
 import PageTransition from "@/components/providers/PageTransition"
 import FadeIn from "@/components/ui/FadeIn"
 import TextReveal from "@/components/ui/TextReveal"
@@ -41,18 +41,33 @@ export default function Servizi() {
 
         <section className="py-24 md:py-32" aria-label="Aree di pratica">
           <div className="mx-auto max-w-6xl px-5 md:px-12">
-            <SectionLabel text="Aree di pratica" />
-            <FadeIn delay={0.1}>
-              <h1 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] max-w-2xl">
-                <TextReveal delay={0.2}>Assistenza legale su misura.</TextReveal>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.3}>
-              <p className="text-base text-muted leading-[1.7] max-w-lg mt-6">
-                Ogni caso è unico. Offro consulenza specializzata nelle aree in cui
-                l&apos;esperienza professionale è più profonda e consolidata.
-              </p>
-            </FadeIn>
+            <div className="flex flex-row items-center justify-between gap-8">
+              <div className="flex-1">
+                <SectionLabel text="Aree di pratica" />
+                <FadeIn delay={0.1}>
+                  <h1 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] max-w-2xl">
+                    <TextReveal delay={0.2}>Assistenza legale su misura.</TextReveal>
+                  </h1>
+                </FadeIn>
+                <FadeIn delay={0.3}>
+                  <p className="text-base text-muted leading-[1.7] max-w-lg mt-6">
+                    Ogni caso è unico. Offro consulenza specializzata nelle aree in cui
+                    l&apos;esperienza professionale è più profonda e consolidata.
+                  </p>
+                </FadeIn>
+              </div>
+              <FadeIn delay={0.4} className="shrink-0">
+                <div
+                  className="w-14 h-14 md:w-20 md:h-20 rounded-xl flex items-center justify-center text-white"
+                  style={{
+                    background: "linear-gradient(135deg, #1e3050, #263d5e)",
+                    boxShadow: "0 6px 24px rgba(30, 48, 80, 0.25), 0 2px 6px rgba(30, 48, 80, 0.12)",
+                  }}
+                >
+                  <Gavel className="w-7 h-7 md:w-10 md:h-10" strokeWidth={1.2} />
+                </div>
+              </FadeIn>
+            </div>
           </div>
         </section>
 
@@ -68,8 +83,6 @@ export default function Servizi() {
               <div className="mx-auto max-w-6xl px-5 md:px-12">
                 {/* Mobile: card con accent laterale */}
                 <div className="md:hidden">
-                  <SectionLabel text={servizio.titolo} />
-
                   <FadeIn delay={0.1}>
                     <h2 className="font-heading text-3xl font-medium text-text leading-[1.1] mb-6 flex items-center gap-3">
                       <span className="text-accent/40">{mobileIcons[servizio.id]}</span>
@@ -118,8 +131,6 @@ export default function Servizi() {
                   </div>
 
                   <div className="w-7/12">
-                    <SectionLabel text={servizio.titolo} />
-
                     <FadeIn delay={0.1}>
                       <h2 className="font-heading text-3xl md:text-4xl font-medium text-text leading-[1.1] mb-6">
                         <TextReveal delay={0.2}>{servizio.titolo}</TextReveal>
