@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Studio Legale a Roma — Diritto Penale, Famiglia, Civile e Lavoro",
     start_url: "/",
     display: "standalone",
-    background_color: "#08090D",
-    theme_color: "#08090D",
+    background_color: "#FFFFFF",
+    theme_color: "#FFFFFF",
     icons: [
       {
         src: "/icon",

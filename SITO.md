@@ -1,13 +1,27 @@
 # SITO.md — Template completo per siti vetrina professionali con Next.js
 
-Documento operativo. Contiene tutto il necessario per replicare la struttura, l'estetica, il deploy e le integrazioni di un sito vetrina premium.
+Documento operativo. Contiene tutto il necessario per replicare la struttura, l'estetica, il deploy e le integrazioni di un sito vetrina premium con Next.js.
 
-Ogni blocco è pensato per essere eseguito in sequenza: "fai blocco 1", "fai blocco 2", ecc.
+**Come usare questo documento**
+
+Consegna questo file a un'AI con questo prompt:
+
+> *"Leggi attentamente SITO.md. Devo realizzare un nuovo sito professionale per [nome cliente], [professione], a [città]. Il dominio sarà [dominio.it]. I servizi offerti sono: [lista]. L'email del cliente è [email]. Guida passo per passo partendo dal Blocco 0, aspetta la mia conferma ad ogni fase prima di procedere."*
+
+L'AI avrà tutto il contesto per:
+- Raccogliere le informazioni mancanti prima di iniziare
+- Creare GitHub + Vercel + Resend nell'ordine corretto
+- Scrivere il codice con la stessa struttura e qualità
+- Fare il deploy senza errori
+- Configurare i DNS su Aruba senza perdere giorni
+
+Ogni blocco è eseguibile in sequenza: "fai blocco 0", "fai blocco 1", ecc.
 
 ---
 
 ## Indice
 
+0. [Checklist di avvio — LEGGI PRIMA DI TUTTO](#blocco-0--checklist-di-avvio--leggi-prima-di-tutto)
 1. [Stack tecnologico e dipendenze](#blocco-1--stack-tecnologico-e-dipendenze)
 2. [Struttura del progetto](#blocco-2--struttura-del-progetto)
 3. [Fondamenta: layout, font, colori](#blocco-3--fondamenta-layout-font-colori)
@@ -22,6 +36,150 @@ Ogni blocco è pensato per essere eseguito in sequenza: "fai blocco 1", "fai blo
 12. [Google Search Console](#blocco-12--google-search-console)
 13. [Concetti chiave Next.js](#blocco-13--concetti-chiave-nextjs)
 14. [Lezioni apprese e errori da evitare](#blocco-14--lezioni-apprese-e-errori-da-evitare)
+
+---
+
+## BLOCCO 0 — Checklist di avvio — LEGGI PRIMA DI TUTTO
+
+Prima di scrivere una riga di codice, devi raccogliere le informazioni del cliente e configurare tutti i servizi esterni. Farlo nell'ordine sbagliato causa ritardi di giorni.
+
+### 0.1 Informazioni da raccogliere dal cliente
+
+Prima di iniziare chiedi al cliente questi dati. Senza di essi non puoi procedere:
+
+| Dato | Esempio |
+|---|---|
+| Nome completo e titolo | Avv. Francesca Cicalese |
+| Professione/settore | Avvocato |
+| Email professionale (riceverà i messaggi dal form) | francescacicalese1@gmail.com |
+| Telefono | +39 349 163 5839 |
+| Indirizzo studio | Via Sabotino 46, Roma (zona Prati) |
+| Dominio desiderato | francescacicalese.it |
+| Servizi offerti (3-4 max) | Diritto Penale, Famiglia, Civile, Lavoro |
+| Colori preferiti / brand | Nero + blu (#5B8DEF) — ispirazione luxury |
+| Foto professionali | Alta risoluzione, minimo 1000px lato corto |
+| Breve bio | 2-3 paragrafi scritti dal cliente o da scrivere insieme |
+| Testimonianze clienti | 3-4 recensioni con nome e città |
+
+### 0.2 Account necessari — verifica cosa hai già
+
+Questi account devono essere già attivi. Se non lo sono, creali prima di continuare:
+
+| Servizio | URL | Note |
+|---|---|---|
+| **GitHub** | github.com | Uno per tutti i progetti — crea una repo per ogni sito |
+| **Vercel** | vercel.com | Connesso al tuo account GitHub — un progetto per sito |
+| **Resend** | resend.com | Un account, più domini (uno per cliente) |
+| **Aruba** (o altro registrar) | admin.aruba.it | Accesso del cliente, non tuo — fatti dare le credenziali |
+
+### 0.3 Ordine di setup — NON cambiarlo
+
+Questo è l'ordine corretto. Se lo cambi, perdi ore:
+
+```
+FASE A — Setup servizi (prima del codice)
+  1. Crea la repository GitHub
+  2. Crea il progetto Next.js e collegalo alla repo
+  3. Crea il progetto su Vercel collegandolo alla repo GitHub
+  4. Su Resend: aggiungi il dominio del cliente
+  5. Su Aruba: aggiungi i 4 record DNS di Resend
+  6. Aspetta 2-4 ore (propagazione DNS) — in questo tempo scrivi il codice
+
+FASE B — Sviluppo
+  7. Scrivi il codice (Blocchi 1-9 di questo documento)
+  8. Testa tutto in locale
+
+FASE C — Go live
+  9. Aggiungi RESEND_API_KEY nelle variabili d'ambiente di Vercel
+  10. Commit + Push → Vercel deploya automaticamente
+  11. Aggiungi il dominio del cliente su Vercel
+  12. Su Aruba: modifica il record A del dominio per puntare a Vercel
+  13. Aspetta propagazione DNS (5 min - 1 ora)
+  14. Verifica il dominio su Resend → avvia la verifica
+  15. Testa il form contatti sul sito live
+  16. Google Search Console: verifica dominio + invia sitemap
+```
+
+**Perché questo ordine?** I record DNS di Resend e Vercel hanno bisogno di ore per propagarsi. Se li aggiungi subito (Fase A), quando arrivi al go live (Fase C) sono già propagati e la verifica è istantanea. Se li aggiungi alla fine, aspetti ore bloccato.
+
+### 0.4 Creazione repository GitHub (nuovo sito)
+
+Hai già un account GitHub. Per ogni nuovo cliente crei una nuova repository:
+
+1. Vai su [github.com](https://github.com) e accedi
+2. Clicca il **`+`** in alto a destra → **New repository**
+3. Compila:
+   - **Repository name**: `nome-cognome-website` (es. `mario-rossi-website`)
+   - **Description**: `Sito professionale — [Nome Cliente]`
+   - **Visibility**: Private (il codice non è pubblico)
+   - **NON spuntare** "Add a README file" — lo farà Next.js
+4. Clicca **Create repository**
+5. GitHub mostra una pagina con i comandi. Copiati l'URL della repo (es. `https://github.com/emilioff8822/mario-rossi-website.git`)
+
+Poi in PowerShell, nella cartella dove vuoi creare il progetto:
+
+```bash
+npx create-next-app@latest mario-rossi-website --typescript --tailwind --app --src-dir=no
+cd mario-rossi-website
+npm install framer-motion lenis resend
+git remote add origin https://github.com/emilioff8822/mario-rossi-website.git
+git push -u origin main
+```
+
+### 0.5 Collegare Vercel al nuovo progetto (stesso account)
+
+Hai già un account Vercel. Per ogni nuovo sito crei un nuovo progetto:
+
+1. Vai su [vercel.com](https://vercel.com) e accedi
+2. Clicca **Add New…** → **Project**
+3. Cerca la nuova repository GitHub nella lista → clicca **Import**
+4. Vercel riconosce automaticamente che è Next.js
+5. **PRIMA di cliccare Deploy**, aggiungi la variabile d'ambiente:
+   - Vai in **Environment Variables**
+   - Key: `RESEND_API_KEY`
+   - Value: la chiave Resend (la trovi su resend.com → API Keys)
+   - Seleziona tutti gli ambienti (Production, Preview, Development)
+6. Clicca **Deploy**
+
+Il sito sarà subito online su un URL temporaneo tipo `mario-rossi-website.vercel.app`. Questo è il tuo URL di test finché non colleghi il dominio del cliente.
+
+### 0.6 Aggiungere il dominio su Resend (stesso account)
+
+Hai già un account Resend con un dominio verificato (es. `francescacicalese.it`). Per ogni nuovo cliente aggiungi un nuovo dominio:
+
+1. Vai su [resend.com](https://resend.com) → accedi
+2. **Domains** → **Add Domain**
+3. Inserisci il dominio del nuovo cliente (es. `mariorossi.it`)
+4. Seleziona **Ireland (eu-west-1)**
+5. Resend mostra i 4 record DNS da aggiungere
+6. **Non chiudere questa pagina** — vai su Aruba e aggiungi i record (vedi Blocco 8)
+7. Poi torna su Resend e avvia la verifica
+
+⚠️ **Non creare un nuovo account Resend**. Usa sempre lo stesso. Il piano gratuito supporta più domini.
+
+### 0.7 API Key Resend — una per progetto o condivisa?
+
+Puoi riutilizzare la stessa API key per più domini, oppure crearne una per ogni cliente (consigliato per sicurezza):
+
+1. Resend → **API Keys** → **Create API Key**
+2. Name: `mario-rossi-website`
+3. Permission: `Sending access`
+4. Copia la chiave e mettila nella variabile d'ambiente di Vercel del nuovo progetto
+
+### 0.8 Cosa cambiare per ogni nuovo sito
+
+| File | Cosa modificare |
+|---|---|
+| `data/siteConfig.ts` | TUTTO (nome, contatti, indirizzo, URL, navigazione) |
+| `data/servizi.ts` | Servizi del cliente |
+| `data/testimonianze.ts` | Testimonianze |
+| `app/globals.css` | `--color-accent` e palette colori |
+| `app/layout.tsx` | Metadata globali, verifica Google Search Console |
+| `app/structured-data.tsx` | Dati Schema.org del cliente |
+| `app/actions/contact.ts` | `from` (dominio Resend verificato), `to` (email cliente) |
+| `public/images/` | Foto del cliente |
+| `.env.local` | `RESEND_API_KEY` nuova |
+| Vercel → Environment Variables | `RESEND_API_KEY` nuova |
 
 ---
 
@@ -758,24 +916,73 @@ Punti chiave:
 
 ### 8.1 Cos'è Resend
 
-Resend è un servizio per inviare email via API. Il piano gratuito include 3000 email/mese. Non serve un server SMTP proprio.
+Resend è un servizio per inviare email via API. Il piano gratuito include 3000 email/mese. Non serve un server SMTP proprio. Un account Resend può gestire **più domini** — puoi usare lo stesso account per tutti i siti che realizzi, aggiungendo un dominio per ogni cliente.
 
-### 8.2 Setup (passi nell'ordine esatto)
+### 8.2 ERRORE CRITICO DA NON RIPETERE — Dominio da verificare PRIMA di tutto
 
-1. Vai su [resend.com](https://resend.com) e crea un account
-2. Nel dashboard, vai su **API Keys** → **Create API Key**
-3. Copia la chiave (inizia con `re_...`)
-4. Crea il file `.env.local` nella root del progetto:
-   ```
-   RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
-   ```
-5. Installa il pacchetto: `npm install resend`
+**Il piano gratuito di Resend con `onboarding@resend.dev` come mittente può inviare SOLO alla tua email personale (quella con cui ti sei registrato su Resend).** Non può inviare all'email del cliente.
 
-**IMPORTANTE**: `.env.local` è già nel `.gitignore`. Non deve MAI finire su GitHub.
+Per inviare a qualsiasi destinatario (es. `francescacicalese1@gmail.com`) devi verificare il dominio del cliente su Resend. Questo richiede di aggiungere record DNS su Aruba.
 
-### 8.3 Server Action (app/actions/contact.ts)
+**Fai questo PRIMA di scrivere qualsiasi codice.**
 
-Questo file gira SOLO sul server. L'utente non vede mai la API key.
+### 8.3 Setup completo — nell'ordine esatto
+
+**FASE 1 — Resend**
+1. Vai su [resend.com](https://resend.com) e accedi
+2. **API Keys** → **Create API Key** → copia la chiave (`re_...`)
+3. **Domains** → **Add Domain** → inserisci il dominio del cliente (es. `nomecliente.it`) → seleziona **Ireland (eu-west-1)**
+4. Resend mostra i record DNS da aggiungere — **non chiudere questa pagina**
+
+**FASE 2 — Aruba (aggiunta record DNS)**
+
+Vai su [admin.aruba.it](https://admin.aruba.it) → Gestione DNS → dominio del cliente.
+
+Aggiungi questi record **uno alla volta** dal tab **Record** → **AGGIUNGI RECORD**:
+
+**Record 1 — DKIM** (tipo TXT):
+```
+Nome host: resend._domainkey
+Valore: p=MIGfMA0GC... [copia il valore completo da Resend]
+TTL: 1 Ora
+```
+
+**Record 2 — SPF** (tipo TXT):
+```
+Nome host: send
+Valore: v=spf1 include:amazonses.com ~all
+TTL: 1 Ora
+```
+
+**Record 3 — DMARC** (tipo TXT):
+```
+Nome host: _dmarc
+Valore: v=DMARC1; p=none;
+TTL: 1 Ora
+```
+
+**Record 4 — MX sottodominio** (tab **Record MX** → **Gestione avanzata** → **AGGIUNGI SU SOTTODOMINIO**):
+```
+Nome host: send
+Valore: feedback-smtp.eu-west-1.amazonses.com
+Priorità: 10
+TTL: 1 Ora
+```
+
+⚠️ **ATTENZIONE**: il record MX del sottodominio NON si aggiunge dal tab Record normale (non c'è il tipo MX). Si aggiunge dal tab **Record MX** → clicca **Gestione avanzata** → poi **AGGIUNGI SU SOTTODOMINIO**.
+
+**FASE 3 — Aspetta la propagazione DNS**
+
+Dopo aver aggiunto tutti i record, aspetta **almeno 1-2 ore** prima di avviare la verifica su Resend. I DNS di Aruba impiegano tempo a distribuirsi. Se avvii la verifica troppo presto, Resend non trova i record e segna **Failed**.
+
+**FASE 4 — Avvia la verifica su Resend**
+
+1. Vai su Resend → **Domains** → clicca il dominio
+2. Clicca i **tre puntini `...`** → **Verify**
+3. Aspetta che tutti i record diventino **Verified** (verdi)
+4. Lo status del dominio diventa **Verified** → pronto per inviare
+
+### 8.4 Server Action — codice corretto (app/actions/contact.ts)
 
 ```tsx
 "use server"
@@ -796,33 +1003,35 @@ export async function sendContactEmail(
   const email = (formData.get("email") as string)?.trim()
   const messaggio = (formData.get("messaggio") as string)?.trim()
 
-  // Validazione
   if (!nome || !email || !messaggio) {
     return { status: "error", message: "Tutti i campi sono obbligatori." }
   }
 
-  try {
-    await resend.emails.send({
-      from: "Nome Sito <onboarding@resend.dev>",  // Mittente (gratis con dominio resend.dev)
-      to: "email-destinatario@gmail.com",          // Chi riceve il messaggio
-      replyTo: email,                               // Rispondendo si scrive al visitatore
-      subject: `Nuovo messaggio da ${nome}`,
-      html: `...`,                                  // Template HTML dell'email
-    })
-    return { status: "success" }
-  } catch {
-    return { status: "error", message: "Errore nell'invio." }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+    return { status: "error", message: "Inserisci un indirizzo email valido." }
   }
+
+  // IMPORTANTE: usare { error } non try/catch — Resend SDK v2+ non lancia eccezioni
+  const { error } = await resend.emails.send({
+    from: "Nome Studio <noreply@dominio-cliente.it>",  // dominio verificato su Resend
+    to: "email-cliente@gmail.com",
+    replyTo: email,
+    subject: `Nuovo messaggio da ${nome}`,
+    html: `...`,
+  })
+
+  if (error) {
+    return { status: "error", message: "Errore nell'invio. Riprova o scrivimi direttamente all'email." }
+  }
+
+  return { status: "success" }
 }
 ```
 
-`"use server"` → dice a Next.js che questa funzione gira sul server. Il browser non la scarica.
+⚠️ **ERRORE CRITICO DA NON RIPETERE**: il Resend SDK v2+ NON lancia eccezioni — restituisce `{ data, error }`. Usare `try/catch` non intercetta mai gli errori: il form mostra sempre "successo" anche quando l'email non viene inviata. Usare SEMPRE `const { error } = await resend.emails.send(...)` e controllare `if (error)`.
 
-`from: "onboarding@resend.dev"` → con il piano gratuito di Resend, il mittente deve usare questo dominio. Per un mittente personalizzato (`noreply@tuodominio.it`) serve verificare il dominio su Resend.
-
-`replyTo: email` → quando il cliente risponde all'email ricevuta, la risposta va direttamente al visitatore che ha compilato il form.
-
-### 8.4 ContactForm.tsx (componente client)
+### 8.5 ContactForm.tsx (componente client)
 
 ```tsx
 "use client"
@@ -833,9 +1042,6 @@ const initialState: ContactState = { status: "idle" }
 
 export default function ContactForm() {
   const [state, action, pending] = useActionState(sendContactEmail, initialState)
-  // state   → stato corrente { status, message }
-  // action  → funzione da passare come action del <form>
-  // pending → true mentre l'email viene inviata
 
   if (state.status === "success") {
     return <p>Messaggio ricevuto!</p>
@@ -855,19 +1061,40 @@ export default function ContactForm() {
 }
 ```
 
-`useActionState` (React 19) gestisce automaticamente il ciclo: form submit → Server Action → aggiornamento stato → re-render.
+### 8.6 Variabili d'ambiente su Vercel
 
-### 8.5 Variabili d'ambiente su Vercel
+1. Vai su Vercel → progetto → **Settings** → **Environment Variables**
+2. Aggiungi: Key = `RESEND_API_KEY`, Value = `re_xxxxxxxxxxxxxxxxxxxxx`
+3. Salva
+4. Vai su **Deployments** → **Redeploy** per attivare la variabile
 
-La API key in `.env.local` funziona solo in locale. Per il sito deployato su Vercel:
+⚠️ Aggiungere la variabile su Vercel non basta — serve fare **Redeploy** per attivarla nel build corrente.
 
-1. Vai nel progetto su Vercel
-2. **Settings** → **Environment Variables**
-3. Aggiungi: Key = `RESEND_API_KEY`, Value = `re_xxxxxxxxxxxxxxxxxxxxx`
-4. Seleziona gli ambienti: Production, Preview, Development
-5. Salva
+### 8.7 Debug — come capire cosa non funziona
 
-Vercel inietterà automaticamente la variabile durante il build.
+Se le email non arrivano, verifica in questo ordine:
+
+1. **Il form mostra verde o rosso?**
+   - Rosso → errore nel codice o API key sbagliata
+   - Verde ma email non arriva → controlla spam, oppure bug nel codice (vedi punto 2)
+
+2. **Controlla Resend → Logs** — mostra ogni chiamata API con il dettaglio dell'errore
+   - `403 Testing domain restriction` → dominio non verificato, mittente sbagliato
+   - `Domain not verified` → dominio non ancora verificato su Resend
+   - `Invalid API key` → chiave sbagliata su Vercel
+
+3. **Controlla Resend → Emails** — se l'email appare in lista, Resend l'ha inviata. Se non appare, il problema è nel codice/chiave, non nella consegna.
+
+4. **Verifica Vercel → Logs → Runtime** — mostra gli errori del server quando il form viene inviato
+
+### 8.8 Gestione multi-sito con Resend
+
+Un account Resend gestisce tutti i siti. Per ogni nuovo cliente:
+1. Resend → **Domains** → **Add Domain** → dominio del nuovo cliente
+2. Aggiungi i 4 record DNS su Aruba del nuovo cliente
+3. Verifica il dominio
+4. Crea una nuova API key dedicata (opzionale ma consigliato per sicurezza)
+5. Aggiungi la nuova API key nelle variabili d'ambiente del nuovo progetto Vercel
 
 ---
 
@@ -1227,47 +1454,51 @@ Prima di andare online, verifica OGNI punto:
 
 ## BLOCCO 10 — Deploy: GitHub + Vercel
 
-### 10.1 Repository GitHub
+La guida completa di setup è nel **Blocco 0**. Qui trovi la referenza rapida per il deploy quotidiano e la risoluzione di problemi.
 
-Il progetto deve essere su GitHub. Se non lo è ancora:
+### 10.1 Flusso di lavoro quotidiano
 
 ```bash
-git init
+# In locale: testa sempre prima
+npm run dev
+
+# Quando tutto funziona, manda online
 git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/username/nome-repo.git
-git push -u origin main
-```
-
-### 10.2 Collegare Vercel a GitHub
-
-1. Vai su [vercel.com](https://vercel.com)
-2. Accedi con il tuo account GitHub
-3. Clicca **"Add New..."** → **"Project"**
-4. Seleziona il repository del sito dalla lista
-5. Vercel riconosce automaticamente che è un progetto Next.js
-6. Nella sezione **Environment Variables**, aggiungi `RESEND_API_KEY` con il valore della chiave
-7. Clicca **"Deploy"**
-
-Vercel farà il primo build. Quando è finito, il sito sarà online su un URL temporaneo tipo:
-`https://nome-progetto.vercel.app`
-
-### 10.3 Deploy automatici
-
-Da questo momento, ogni volta che fai push su GitHub:
-```bash
-git add .
-git commit -m "descrizione modifica"
+git commit -m "descrizione della modifica"
 git push
 ```
-Vercel si accorge automaticamente del push e fa un nuovo deploy. In 30-60 secondi le modifiche sono online.
 
-Questo è il flusso standard:
-1. Modifica codice in locale
-2. Testa con `npm run dev`
-3. Quando funziona: `git add .` → `git commit` → `git push`
-4. Vercel deploya automaticamente
-5. Il sito si aggiorna
+Vercel si accorge automaticamente del push e fa un nuovo deploy in 30-60 secondi.
+
+### 10.2 Redeploy manuale (quando serve)
+
+Serve fare un redeploy manuale quando:
+- Hai aggiunto o modificato una **variabile d'ambiente** su Vercel (il push automatico non la ricarica se il codice non è cambiato)
+- Il deploy automatico è fallito per errori di build
+
+Come fare:
+1. Vercel → progetto → tab **Deployments**
+2. Trova il deploy più recente → clicca i tre puntini `...`
+3. Clicca **Redeploy**
+
+### 10.3 Leggere i log di Vercel (debug)
+
+Se qualcosa non funziona sul sito live ma funziona in locale:
+1. Vercel → progetto → **Deployments** → clicca il deploy recente
+2. Vai nel tab **Runtime Logs** — mostra gli errori del server in tempo reale
+3. Riproduci l'azione che fallisce (es. invia il form) e guarda i log
+
+### 10.4 Aggiungere variabili d'ambiente dopo il primo deploy
+
+1. Vercel → progetto → **Settings** → **Environment Variables**
+2. Aggiungi la variabile
+3. ⚠️ Fai **Redeploy** manuale — senza questo la variabile non è attiva
+
+### 10.5 Controllare l'URL del sito
+
+Ogni progetto Vercel ha:
+- URL temporaneo: `nome-progetto.vercel.app` (funziona sempre, utile per test)
+- URL dominio custom: `dominio-cliente.it` (dopo aver collegato il dominio)
 
 ---
 
@@ -1470,6 +1701,17 @@ cubic-bezier(0.22, 1, 0.36, 1)
 5. **Mai committare `.env.local`**. Il `.gitignore` standard di Next.js lo esclude già.
 6. **Le immagini vanno in `public/images/`**. Next.js serve i file da `public/` alla root del dominio.
 7. **`dangerouslySetInnerHTML`** è sicuro per JSON-LD perché il contenuto è generato dal codice (non dall'utente).
+8. **Resend SDK v2+ non lancia eccezioni** — restituisce `{ data, error }`. Non usare `try/catch`, usare `const { error } = await resend.emails.send(...)` e controllare `if (error)`. Con `try/catch` il form mostra sempre successo anche quando l'email non viene inviata.
+9. **Le immagini in Next.js vanno dichiarate con `width` e `height` proporzionati alla dimensione di visualizzazione reale**. Usare `width={960}` e `quality={90}` per immagini ritratto su schermi retina. Se il file sorgente è piccolo (sotto 800px), il codice non può migliorare la qualità — servono foto originali ad alta risoluzione.
+
+### Resend — errori specifici e soluzioni
+
+1. **`Testing domain restriction`** → stai usando `onboarding@resend.dev` come mittente ma il destinatario non è la tua email Resend. Soluzione: verifica il dominio del cliente.
+2. **`Domain not verified`** → il dominio è stato aggiunto su Resend ma i record DNS non sono ancora verificati. Aspetta la propagazione e riavvia la verifica.
+3. **Le email non arrivano ma il form mostra successo** → bug classico: stai usando `try/catch` invece di `{ error }`. Vedi punto 8 sopra.
+4. **Il record MX per il sottodominio `send` non si trova su Aruba** → non cercarlo nel tab Record normale (non c'è il tipo MX). Vai su **Record MX** → **Gestione avanzata** → **AGGIUNGI SU SOTTODOMINIO**.
+5. **Resend mostra Failed dopo poche ore** → hai avviato la verifica troppo presto, i DNS non erano ancora propagati. Aspetta 2-4 ore dopo aver aggiunto i record, poi riavvia la verifica.
+6. **La API key su Vercel sembra corretta ma non funziona** → dopo aver aggiunto/modificato una variabile d'ambiente su Vercel, fare sempre **Redeploy** manuale per attivarla nel build corrente.
 
 ### Deploy e dominio
 
@@ -1479,6 +1721,7 @@ cubic-bezier(0.22, 1, 0.36, 1)
 4. **Il codice di verifica Google Search Console è legato all'account Google**. Se verifichi con il tuo account ma il sito è del cliente, il cliente non avrà accesso a Search Console.
 5. **Dopo aver inviato la sitemap**, Google può impiegare giorni o settimane per indicizzare completamente. È normale.
 6. **`http://dominio.it` non funzionerà** se il browser non fa redirect automatico. Usa sempre `https://`.
+7. **Dopo aver aggiunto variabili d'ambiente su Vercel**, fare sempre Redeploy. Il push automatico da GitHub non ricarica le variabili se il codice non è cambiato.
 
 ### Workflow ideale
 

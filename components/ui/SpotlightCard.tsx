@@ -31,7 +31,7 @@ export default function SpotlightCard({ children, className = "" }: Props) {
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500"
         style={{
           opacity: visible ? 1 : 0,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(91,141,239,0.06), transparent 40%)`,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(30,48,80,0.04), transparent 40%)`,
         }}
       />
       <div className="relative z-10">{children}</div>

@@ -23,16 +23,35 @@ const valori = [
     titolo: "Competenza",
     testo:
       "Una preparazione tecnica rigorosa, aggiornata costantemente, per garantire la migliore difesa in ogni procedimento.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M4 19V5a2 2 0 012-2h8l6 6v10a2 2 0 01-2 2H6a2 2 0 01-2-2z" />
+        <path d="M14 3v6h6" />
+        <path d="M9 13h6M9 17h4" />
+      </svg>
+    ),
   },
   {
     titolo: "Dedizione",
     testo:
       "Ogni caso riceve la massima attenzione. Nessun fascicolo viene trattato come routine: ogni storia merita cura.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </svg>
+    ),
   },
   {
     titolo: "Riservatezza",
     testo:
       "Il rapporto con il cliente è fondato sulla fiducia. La discrezione è un dovere professionale e un valore personale.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <rect x="5" y="11" width="14" height="10" rx="2" />
+        <path d="M8 11V7a4 4 0 118 0v4" />
+      </svg>
+    ),
   },
 ]
 
@@ -49,14 +68,14 @@ export default function ChiSono() {
               {/* Foto */}
               <FadeIn className="w-full md:w-5/12 shrink-0">
                 <div className="relative">
-                  <div className="absolute -top-3 -left-3 w-full h-full border border-accent opacity-20 rounded-lg" />
+                  <div className="absolute -top-3 -left-3 w-full h-full border-2 border-accent/20" />
                   <Image
                     src="/images/francesca-toga.png"
                     alt="Avv. Francesca Cicalese in toga alla Corte di Cassazione, Roma"
                     width={960}
                     height={1280}
                     quality={90}
-                    className="relative rounded-lg object-cover aspect-[3/4] w-full"
+                    className="relative object-cover aspect-[3/4] w-full"
                     priority
                   />
                 </div>
@@ -117,14 +136,19 @@ export default function ChiSono() {
               </h2>
             </FadeIn>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
               {valori.map((valore, index) => (
                 <FadeIn key={valore.titolo} delay={index * 0.1}>
-                  <div>
-                    <div className="w-6 h-px bg-accent mb-6" />
-                    <h3 className="font-heading text-xl font-medium text-text mb-4">
-                      {valore.titolo}
-                    </h3>
+                  <div className="bg-white border border-border p-8 group transition-all duration-500 hover:border-accent/30 hover:shadow-[0_8px_30px_rgba(30,48,80,0.06)] active:border-accent/30 active:shadow-sm h-full">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-10 h-10 border border-accent/20 flex items-center justify-center text-accent">
+                        {valore.icon}
+                      </div>
+                      <h3 className="font-heading text-xl font-medium text-text">
+                        {valore.titolo}
+                      </h3>
+                    </div>
+                    <div className="w-8 h-0.5 bg-accent/40 mb-4 group-hover:w-12 transition-all duration-500" />
                     <p className="text-sm text-muted leading-[1.8]">
                       {valore.testo}
                     </p>
@@ -136,7 +160,10 @@ export default function ChiSono() {
         </section>
 
         {/* CTA finale */}
-        <section className="py-24 md:py-32" aria-label="Contattami">
+        <section
+          className="py-24 md:py-32 bg-[#E8EDF5]"
+          aria-label="Contattami"
+        >
           <div className="mx-auto max-w-6xl px-5 md:px-12 text-center">
             <FadeIn>
               <h2 className="font-heading text-3xl md:text-4xl font-medium text-text leading-[1.1] mb-6">

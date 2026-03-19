@@ -4,17 +4,21 @@ type Props = {
   text: string
   href: string
   fullWidth?: boolean
+  inverted?: boolean
 }
 
-export default function CTAButton({ text, href, fullWidth = false }: Props) {
+export default function CTAButton({ text, href, fullWidth = false, inverted = false }: Props) {
+  const base = "group relative inline-block overflow-hidden px-8 py-3.5 text-[13px] uppercase tracking-[0.15em] font-medium transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:translate-y-0 active:scale-[0.96] active:shadow-none active:transition-[transform] active:duration-100"
+
+  const normal = "border-[1.5px] border-[rgba(17,24,39,0.15)] text-text hover:bg-accent hover:text-white hover:border-accent hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(30,48,80,0.25)] active:bg-[#162640]"
+
+  const inv = "border-[1.5px] border-white/30 text-white hover:bg-white hover:text-accent hover:border-white hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,255,255,0.15)] active:bg-white/90"
+
   return (
     <Link
       href={href}
-      className={`group relative inline-block overflow-hidden border px-8 py-3.5 text-sm uppercase tracking-[0.15em] font-medium transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] border-border-hover text-muted md:border-border hover:border-accent hover:text-text hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(91,141,239,0.15)] active:scale-[0.98] active:border-accent active:text-text active:transition-transform active:duration-100 ${
-        fullWidth ? "w-full text-center py-4" : ""
-      }`}
+      className={`${base} ${inverted ? inv : normal} ${fullWidth ? "w-full text-center py-4" : ""}`}
     >
-      <span className="absolute inset-0 bg-accent opacity-[0.06] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
       <span className="relative">{text}</span>
     </Link>
   )

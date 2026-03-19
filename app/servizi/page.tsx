@@ -85,22 +85,54 @@ export default function Servizi() {
         {servizi.map((servizio, index) => (
           <div key={servizio.id}>
             <section
-              className="py-24 md:py-32"
+              className={`py-24 md:py-32 ${index % 2 === 1 ? "bg-surface" : ""}`}
               aria-label={servizio.titolo}
               id={servizio.id}
             >
               <div className="mx-auto max-w-6xl px-5 md:px-12">
+                {/* Mobile: card con accent laterale */}
+                <div className="md:hidden">
+                  <SectionLabel text={servizio.titolo} />
+
+                  <FadeIn delay={0.1}>
+                    <h2 className="font-heading text-3xl font-medium text-text leading-[1.1] mb-6">
+                      {servizio.titolo}
+                    </h2>
+                  </FadeIn>
+
+                  <FadeIn delay={0.2}>
+                    <p className="text-base text-muted leading-[1.8] mb-8">
+                      {servizio.descrizioneEstesa}
+                    </p>
+                  </FadeIn>
+
+                  <FadeIn delay={0.3}>
+                    <ul className="space-y-3 mb-10">
+                      {servizio.punti.map((punto) => (
+                        <li key={punto} className="flex items-start gap-3">
+                          <span className="mt-2 block w-4 h-px bg-accent shrink-0" />
+                          <span className="text-sm text-muted leading-[1.7]">{punto}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </FadeIn>
+
+                  <FadeIn delay={0.4}>
+                    <CTAButton text="Richiedi consulenza" href="/contatti" />
+                  </FadeIn>
+                </div>
+
+                {/* Desktop: layout a due colonne con watermark */}
                 <div
-                  className={`flex flex-col ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  } gap-12 md:gap-20 items-center`}
+                  className={`hidden md:flex ${
+                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  } gap-20 items-center`}
                 >
-                  {/* Icona watermark decorativa */}
-                  <div className="w-full md:w-5/12 shrink-0 flex items-center justify-center">
+                  <div className="w-5/12 shrink-0 flex items-center justify-center">
                     <FadeIn>
                       <div
                         className="text-accent select-none"
-                        style={{ width: 200, height: 200, opacity: 0.13 }}
+                        style={{ width: 200, height: 200, opacity: 0.04 }}
                         aria-hidden="true"
                       >
                         {watermarks[servizio.id]}
@@ -108,8 +140,7 @@ export default function Servizi() {
                     </FadeIn>
                   </div>
 
-                  {/* Contenuto */}
-                  <div className="w-full md:w-7/12">
+                  <div className="w-7/12">
                     <SectionLabel text={servizio.titolo} />
 
                     <FadeIn delay={0.1}>
@@ -139,7 +170,6 @@ export default function Servizi() {
                       <CTAButton text="Richiedi consulenza" href="/contatti" />
                     </FadeIn>
                   </div>
-
                 </div>
               </div>
             </section>
@@ -147,7 +177,10 @@ export default function Servizi() {
           </div>
         ))}
 
-        <section className="py-24 md:py-32 bg-surface" aria-label="Contattami">
+        <section
+          className="py-24 md:py-32 bg-[#E8EDF5]"
+          aria-label="Contattami"
+        >
           <div className="mx-auto max-w-6xl px-5 md:px-12 text-center">
             <FadeIn>
               <h2 className="font-heading text-3xl md:text-4xl font-medium text-text leading-[1.1] mb-6">

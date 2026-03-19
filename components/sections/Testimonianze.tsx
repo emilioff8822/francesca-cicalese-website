@@ -35,7 +35,7 @@ export default function Testimonianze() {
 
   return (
     <section
-      className="py-24 md:py-32"
+      className="py-24 md:py-32 bg-surface"
       aria-label="Testimonianze"
       id="recensioni"
       onTouchStart={handleTouchStart}
@@ -48,11 +48,11 @@ export default function Testimonianze() {
         <AnimatePresence mode="wait">
           <motion.div
             key={`quote-${current}`}
-            initial={{ scale: 0.95, opacity: 0.1 }}
-            animate={{ scale: 1, opacity: 0.2 }}
-            exit={{ scale: 0.95, opacity: 0.1 }}
+            initial={{ scale: 0.95, opacity: 0.05 }}
+            animate={{ scale: 1, opacity: 0.15 }}
+            exit={{ scale: 0.95, opacity: 0.05 }}
             transition={{ duration: 0.4 }}
-            className="text-accent text-6xl font-heading leading-none mb-8 select-none"
+            className="text-accent text-[120px] font-heading leading-none mb-8 select-none"
             aria-hidden="true"
           >
             &ldquo;
@@ -98,7 +98,7 @@ export default function Testimonianze() {
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === current
                   ? "bg-accent w-6"
-                  : "bg-faint w-1.5 hover:bg-muted"
+                  : "bg-accent/20 w-1.5 hover:bg-accent/40"
               }`}
             />
           ))}

@@ -20,33 +20,41 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 md:py-32 bg-surface overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
+      style={{ background: "linear-gradient(135deg, #1e3050, #182842)" }}
       aria-label="Contattami"
     >
+      {/* Punto luce centrale per profondità */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.05), transparent 70%)" }}
+        aria-hidden="true"
+      />
+
       <motion.div
         style={{ y: bilanciaY, rotate: bilanciaRotate }}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.08]"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.05]"
         aria-hidden="true"
       >
-        <Image src="/images/bilancia.png" alt="" width={300} height={300} />
+        <Image src="/images/bilancia.png" alt="" width={300} height={300} className="invert" />
       </motion.div>
 
       <div className="relative z-10 max-w-2xl mx-auto px-5 md:px-12 text-center">
         <FadeIn>
-          <h2 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] mb-6">
+          <h2 className="font-heading text-4xl md:text-5xl font-medium text-white leading-[1.1] mb-6">
             <TextReveal>Parliamo del tuo caso.</TextReveal>
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.15}>
-          <p className="text-base text-muted leading-[1.7] mb-10 max-w-md mx-auto">
+          <p className="text-base text-white/70 leading-[1.7] mb-10 max-w-md mx-auto">
             Ogni situazione merita attenzione. Contattami per una
             consulenza iniziale senza impegno.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.3}>
-          <CTAButton text="Contattami" href="/contatti" />
+          <CTAButton text="Contattami" href="/contatti" inverted />
         </FadeIn>
       </div>
     </section>

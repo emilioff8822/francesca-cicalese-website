@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion"
 import { siteConfig } from "@/data/siteConfig"
@@ -8,6 +9,7 @@ import { siteConfig } from "@/data/siteConfig"
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 50, restDelta: 0.001 })
@@ -33,7 +35,7 @@ export default function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-bg/80 backdrop-blur-md" : "bg-transparent"
+          scrolled ? "bg-white/80 backdrop-blur-md shadow-[0_1px_0_rgba(17,24,39,0.06)]" : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-12">
@@ -50,7 +52,9 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="link-hover font-sans text-sm text-muted hover:text-text transition-colors duration-300"
+                className={`link-hover font-sans text-sm transition-colors duration-300 ${
+                  pathname === link.href ? "text-accent" : "text-muted hover:text-accent"
+                }`}
               >
                 {link.label}
               </Link>
@@ -68,14 +72,12 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Scroll progress — linea 1px sotto la navbar */}
         <motion.div
           style={{ scaleX, transformOrigin: "left" }}
           className="h-px bg-accent/40"
         />
       </header>
 
-      {/* Panel mobile */}
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
@@ -84,7 +86,7 @@ export default function Navbar() {
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 top-16 z-40 bg-surface lg:hidden"
+            className="fixed inset-x-0 top-16 z-40 bg-white/95 backdrop-blur-md lg:hidden"
             aria-label="Menu mobile"
           >
             <ul className="flex flex-col px-5 divide-y divide-border" role="list">
@@ -93,7 +95,11 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block font-sans text-base text-text py-5 hover:text-muted transition-colors duration-300"
+                    className={`block font-sans text-base py-4 transition-colors duration-150 ${
+                      pathname === link.href
+                        ? "text-accent font-medium"
+                        : "text-text"
+                    }`}
                   >
                     {link.label}
                   </Link>

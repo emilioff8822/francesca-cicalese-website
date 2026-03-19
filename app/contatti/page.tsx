@@ -4,7 +4,6 @@ import FadeIn from "@/components/ui/FadeIn"
 import TextReveal from "@/components/ui/TextReveal"
 import SectionLabel from "@/components/ui/SectionLabel"
 import ContactForm from "@/components/ui/ContactForm"
-import { siteConfig } from "@/data/siteConfig"
 
 export const metadata: Metadata = {
   title: "Contatti | Studio Legale Avv. Francesca Cicalese — Via Sabotino 46, Roma",
@@ -18,96 +17,50 @@ export const metadata: Metadata = {
   },
 }
 
-const orari = [
-  { giorno: "Lunedì — Venerdì", ore: "9:00 — 18:00" },
-  { giorno: "Sabato", ore: "Su appuntamento" },
-  { giorno: "Domenica", ore: "Chiuso" },
-]
-
 export default function Contatti() {
   return (
     <PageTransition>
       <main className="pt-16">
-        <section className="py-24 md:py-32" aria-label="Contatti e modulo di contatto">
-          <div className="mx-auto max-w-6xl px-5 md:px-12">
 
-            {/* Intestazione */}
+        {/* Hero */}
+        <section className="py-16 md:py-24 bg-surface" aria-label="Intestazione contatti">
+          <div className="mx-auto max-w-6xl px-5 md:px-12">
             <SectionLabel text="Contatti" />
             <FadeIn delay={0.1}>
-              <h1 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] mb-16 max-w-xl">
-                <TextReveal delay={0.2}>Scrivimi.</TextReveal>
+              <h1 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] max-w-xl">
+                <TextReveal delay={0.2}>Parliamo del tuo caso.</TextReveal>
               </h1>
             </FadeIn>
-
-            {/* Grid: form (sinistra larga) + info (destra stretta) */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-16 lg:gap-20 items-start">
-
-              {/* Form */}
-              <FadeIn delay={0.2}>
-                <ContactForm />
-              </FadeIn>
-
-              {/* Info */}
-              <FadeIn delay={0.3}>
-                <div className="space-y-10">
-
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.15em] text-faint mb-4">
-                      Telefono
-                    </p>
-                    <a
-                      href={`tel:${siteConfig.phone}`}
-                      className="link-hover font-sans text-base text-text hover:text-muted transition-colors duration-300"
-                    >
-                      {siteConfig.phone}
-                    </a>
-                  </div>
-
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.15em] text-faint mb-4">
-                      Email
-                    </p>
-                    <a
-                      href={`mailto:${siteConfig.email}`}
-                      className="link-hover font-sans text-sm text-text hover:text-muted transition-colors duration-300 break-all"
-                    >
-                      {siteConfig.email}
-                    </a>
-                  </div>
-
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.15em] text-faint mb-4">
-                      Studio
-                    </p>
-                    <p className="text-sm text-muted leading-[1.8]">
-                      {siteConfig.address}<br />
-                      {siteConfig.cap} {siteConfig.city}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.15em] text-faint mb-4">
-                      Orari
-                    </p>
-                    <div className="space-y-3">
-                      {orari.map((o) => (
-                        <div
-                          key={o.giorno}
-                          className="flex justify-between items-baseline border-b border-border pb-3"
-                        >
-                          <span className="text-xs text-muted">{o.giorno}</span>
-                          <span className="text-xs text-text">{o.ore}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-              </FadeIn>
-
-            </div>
+            <FadeIn delay={0.3}>
+              <p className="text-base text-muted leading-[1.7] max-w-lg mt-6">
+                Contattami per una prima consulenza. Valutiamo insieme
+                la tua situazione senza impegno.
+              </p>
+            </FadeIn>
           </div>
         </section>
+
+        {/* Form */}
+        <section className="py-16 md:py-24" aria-label="Modulo di contatto">
+          <div className="mx-auto max-w-2xl px-5 md:px-12">
+            <FadeIn delay={0.2}>
+              <div className="bg-surface/50 rounded-lg p-6 md:p-10">
+                <ContactForm />
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <p className="text-center text-xs text-faint mt-8">
+                Rispondo generalmente entro 24 ore nei giorni lavorativi
+                <span className="mx-2">·</span>
+                Lun — Ven 9:00 — 18:00
+                <span className="mx-2">·</span>
+                Sabato su appuntamento
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
       </main>
     </PageTransition>
   )

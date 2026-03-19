@@ -57,9 +57,9 @@ export default function Servizi() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {servizi.map((servizio, index) => (
             <FadeIn key={servizio.id} delay={index * 0.1}>
-              <SpotlightCard className="bg-surface border border-border rounded-lg transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-border-hover hover:-translate-y-1 h-full">
-                <div className="p-8 md:p-10 text-center flex flex-col items-center">
-                  <div className="text-accent opacity-50 mb-5">
+              <SpotlightCard className={`border border-border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent/30 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(30,48,80,0.08)] active:border-accent/30 active:shadow-sm h-full ${index % 2 === 0 ? "bg-white" : "bg-white md:bg-white max-md:bg-surface"}`}>
+                <div className="p-6 md:p-8 lg:p-10 text-center flex flex-col items-center">
+                  <div className="text-accent opacity-30 mb-5">
                     {icons[servizio.id]}
                   </div>
 
@@ -67,7 +67,7 @@ export default function Servizi() {
                     {servizio.titolo}
                   </h3>
 
-                  <div className="w-6 h-px bg-accent opacity-40 mb-4" />
+                  <div className="w-8 h-0.5 bg-accent opacity-40 mb-4" />
 
                   <p className="text-sm text-muted leading-relaxed">
                     {servizio.descrizione}

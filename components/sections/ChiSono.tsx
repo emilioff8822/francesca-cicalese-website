@@ -13,7 +13,7 @@ export default function ChiSono() {
   const imgInView = useInView(imgRef, { once: true, margin: "-15%" })
 
   return (
-    <section className="py-24 md:py-32" aria-label="Chi Sono" id="chi-sono">
+    <section className="py-24 md:py-32 bg-surface" aria-label="Chi Sono" id="chi-sono">
       <div className="mx-auto max-w-6xl px-5 md:px-12">
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
 
@@ -22,9 +22,9 @@ export default function ChiSono() {
             {/* Cornice sfalsata — appare 0.3s dopo l'immagine */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={imgInView ? { opacity: 0.2 } : { opacity: 0 }}
+              animate={imgInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.6, delay: 1.5 }}
-              className="absolute -top-3 -left-3 w-full h-full border border-accent rounded-lg"
+              className="absolute -top-3 -left-3 w-full h-full border-2 border-accent/20"
             />
 
             {/* Immagine con clip-path reveal + zoom out */}
@@ -36,7 +36,7 @@ export default function ChiSono() {
                   : { clipPath: "inset(100% 0 0 0)", scale: 1.15 }
               }
               transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
-              className="relative rounded-lg overflow-hidden"
+              className="relative overflow-hidden"
             >
               <Image
                 src="/images/francesca-esterno.png"
@@ -70,10 +70,10 @@ export default function ChiSono() {
             <FadeIn delay={0.3}>
               <Link
                 href="/chi-sono"
-                className="link-hover text-sm text-text font-medium inline-flex items-center gap-2 group"
+                className="link-hover text-sm text-accent font-medium inline-flex items-center gap-2 group"
               >
                 Scopri di più
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
                   →
                 </span>
               </Link>

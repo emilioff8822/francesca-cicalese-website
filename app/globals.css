@@ -4,22 +4,22 @@
   --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
 
-  --color-bg:       #08090D;
-  --color-surface:  #10131A;
+  --color-bg:       #FFFFFF;
+  --color-surface:  #F0F2F7;
 
-  --color-text:  #E8ECF4;
-  --color-muted: #7A8499;
-  --color-faint: #4A5568;
+  --color-text:  #111827;
+  --color-muted: #4B5563;
+  --color-faint: #9CA3AF;
 
-  --color-accent: #5B8DEF;
+  --color-accent: #1e3050;
 
-  --color-border:       rgba(255, 255, 255, 0.06);
-  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-border:       rgba(17, 24, 39, 0.12);
+  --color-border-hover: rgba(17, 24, 39, 0.22);
 
   --color-white: #FFFFFF;
 }
 
-:root { color-scheme: dark; }
+:root { color-scheme: light; }
 
 html {
   scroll-behavior: auto !important;
@@ -27,8 +27,8 @@ html {
 }
 
 body {
-  background-color: #08090D;
-  color: #E8ECF4;
+  background-color: #FFFFFF;
+  color: #111827;
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,7 +43,7 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     ellipse at 70% 0%,
-    rgba(91, 141, 239, 0.04) 0%,
+    rgba(30, 48, 80, 0.03) 0%,
     transparent 60%
   );
 }
@@ -57,7 +57,7 @@ body::before {
   bottom: -2px;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 1.5px;
   background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
@@ -76,11 +76,20 @@ body::before {
 }
 
 ::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: #08090D; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #7A8499; }
+::-webkit-scrollbar-track { background: #FFFFFF; }
+::-webkit-scrollbar-thumb { background: rgba(17, 24, 39, 0.15); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(17, 24, 39, 0.25); }
 
 ::selection {
-  background: rgba(91, 141, 239, 0.15);
-  color: #E8ECF4;
+  background: rgba(30, 48, 80, 0.12);
+  color: #111827;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+@media (hover: none) and (pointer: coarse) {
+  button:active, a:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+  }
 }
