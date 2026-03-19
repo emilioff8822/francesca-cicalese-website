@@ -27,7 +27,7 @@ export async function sendContactEmail(
   }
 
   const { error } = await resend.emails.send({
-    from: "Studio Legale Cicalese <onboarding@resend.dev>",
+      from: "Studio Legale Cicalese <noreply@francescacicalese.it>",
     to: "francescacicalese1@gmail.com",
     replyTo: email,
     subject: `Nuovo messaggio da ${nome}`,
