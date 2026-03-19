@@ -27,6 +27,13 @@ const watermarks: Record<string, React.ReactNode> = {
   "diritto-lavoro": <Briefcase size={200} strokeWidth={0.8} />,
 }
 
+const mobileIcons: Record<string, React.ReactNode> = {
+  "diritto-penale": <Scale size={18} strokeWidth={1.5} />,
+  "diritto-famiglia": <Users size={18} strokeWidth={1.5} />,
+  "diritto-civile": <FileText size={18} strokeWidth={1.5} />,
+  "diritto-lavoro": <Briefcase size={18} strokeWidth={1.5} />,
+}
+
 export default function Servizi() {
   return (
     <PageTransition>
@@ -64,7 +71,8 @@ export default function Servizi() {
                   <SectionLabel text={servizio.titolo} />
 
                   <FadeIn delay={0.1}>
-                    <h2 className="font-heading text-3xl font-medium text-text leading-[1.1] mb-6">
+                    <h2 className="font-heading text-3xl font-medium text-text leading-[1.1] mb-6 flex items-center gap-3">
+                      <span className="text-accent/40">{mobileIcons[servizio.id]}</span>
                       {servizio.titolo}
                     </h2>
                   </FadeIn>
