@@ -194,7 +194,7 @@ export default function Servizi() {
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <CTAButton text="Contattami" href="/contatti" solid />
+              <CTAButton text="Contattami" href="/contatti?area=altro" solid />
             </FadeIn>
           </div>
         </section>
