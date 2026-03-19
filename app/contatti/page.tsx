@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import PageTransition from "@/components/providers/PageTransition"
 import FadeIn from "@/components/ui/FadeIn"
 import TextReveal from "@/components/ui/TextReveal"
@@ -45,7 +46,7 @@ export default function Contatti() {
           <div className="mx-auto max-w-2xl px-5 md:px-12">
             <FadeIn delay={0.2}>
               <div className="bg-surface/50 rounded-lg p-6 md:p-10">
-                <ContactForm />
+                <Suspense><ContactForm /></Suspense>
               </div>
             </FadeIn>
 

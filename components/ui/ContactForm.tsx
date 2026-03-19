@@ -1,14 +1,20 @@
 "use client"
 
 import { useActionState } from "react"
+import { useSearchParams } from "next/navigation"
 import { sendContactEmail, type ContactState } from "@/app/actions/contact"
 
 const initialState: ContactState = { status: "idle" }
 
 const inputClasses = "w-full px-4 py-3 bg-white border border-border rounded-md text-base text-text placeholder:text-faint transition-all duration-300 focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,48,80,0.08)] focus:outline-none"
 
+const areaValues = ["penale", "famiglia", "civile", "lavoro", "altro"] as const
+
 export default function ContactForm() {
   const [state, action, pending] = useActionState(sendContactEmail, initialState)
+  const searchParams = useSearchParams()
+  const areaParam = searchParams.get("area")
+  const defaultArea = areaParam && areaValues.includes(areaParam as typeof areaValues[number]) ? areaParam : ""
 
   if (state.status === "success") {
     return (
@@ -68,7 +74,7 @@ export default function ContactForm() {
             id="oggetto"
             name="oggetto"
             className={`${inputClasses} appearance-none pr-10`}
-            defaultValue=""
+            defaultValue={defaultArea}
           >
             <option value="" disabled>Seleziona</option>
             <option value="penale">Diritto Penale</option>

@@ -118,7 +118,7 @@ export default function Servizi() {
                   </FadeIn>
 
                   <FadeIn delay={0.4}>
-                    <CTAButton text="Richiedi consulenza" href="/contatti" solid />
+                    <CTAButton text="Richiedi consulenza" href={`/contatti?area=${servizio.id.replace("diritto-", "")}`} solid />
                   </FadeIn>
                 </div>
 
@@ -167,7 +167,7 @@ export default function Servizi() {
                     </FadeIn>
 
                     <FadeIn delay={0.4}>
-                      <CTAButton text="Richiedi consulenza" href="/contatti" solid />
+                      <CTAButton text="Richiedi consulenza" href={`/contatti?area=${servizio.id.replace("diritto-", "")}`} solid />
                     </FadeIn>
                   </div>
                 </div>
