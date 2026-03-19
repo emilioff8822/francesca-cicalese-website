@@ -1,15 +1,176 @@
-# BACKUP_DARK.md — Ripristino tema scuro
+# BACKUP — Riferimento rollback completo
 
-Se vuoi tornare al tema nero, segui queste istruzioni.
-Ogni sezione corrisponde a un file da modificare. Copia-incolla il codice indicato.
+> **Ultimo commit stabile (tema chiaro + ristrutturazione):**
+> `5e4126e` — giovedì 17 marzo 2026, ~19:00
+> `"redesign: tema chiaro con palette navy elegante e UI raffinata"`
+>
+> **Commit precedente (funzionale, solo fix email):**
+> `686a487` — `"fix: mittente email aggiornato a noreply@francescacicalese.it"`
 
 ---
 
-## 1. app/globals.css — SOSTITUISCI INTERAMENTE
+## Come fare un revert veloce con Git
+
+### Opzione A — Rollback completo all'ultimo commit stabile
+
+Se tutto è andato storto e vuoi tornare esattamente a `5e4126e`:
+
+```bash
+git checkout 5e4126e -- .
+```
+
+Questo riporta tutti i file allo stato di quel commit **senza perdere la storia**.
+Poi fai commit con le modifiche ripristinate.
+
+### Opzione B — Revert di un singolo file
+
+```bash
+git checkout 5e4126e -- app/contatti/page.tsx
+git checkout 5e4126e -- components/layout/Footer.tsx
+```
+
+### Opzione C — Vedere le differenze prima di agire
+
+```bash
+git diff 686a487 5e4126e -- app/contatti/page.tsx
+```
+
+---
+
+## Struttura del commit `5e4126e` — cosa contiene
+
+### Modifiche strutturali (NON solo colori)
+
+| File | Tipo di modifica |
+|---|---|
+| `app/contatti/page.tsx` | Ristrutturata completamente: rimosso pannello info duplicato, form centrato |
+| `app/recensioni/page.tsx` | Sostituita griglia statica con carousel auto-scroll + swipe |
+| `components/sections/RecensioniCarousel.tsx` | Nuovo file (carousel clienti) |
+| `components/layout/Footer.tsx` | Layout a 3 colonne: info + studio + orari |
+| `components/layout/Navbar.tsx` | Active state pagina + rimosso bottone Contattami mobile |
+| `app/servizi/page.tsx` | CTA "Non hai trovato" da navy scuro a `#E8EDF5` chiaro |
+| `app/chi-sono/page.tsx` | CTA finale da navy scuro a `#E8EDF5` chiaro |
+| `app/recensioni/page.tsx` | CTA finale da navy scuro a `#E8EDF5` chiaro |
+
+### Modifiche palette (colori)
+
+| File | Tipo di modifica |
+|---|---|
+| `app/globals.css` | Accent da `#1E40AF` → `#1e3050` (navy elegante) |
+| `components/ui/CTAButton.tsx` | Shadow e active color aggiornati al navy |
+| `components/ui/ContactForm.tsx` | Focus shadow + bottone submit al navy |
+| `components/ui/SpotlightCard.tsx` | Gradiente mouse al navy |
+| `components/sections/Servizi.tsx` | Shadow hover al navy |
+| `components/sections/CTASection.tsx` | Sfondo da `#1E40AF` → `#1e3050` |
+| `app/icon.tsx` / `app/apple-icon.tsx` | Colori favicon al navy |
+
+---
+
+## Snapshot strutturale — stato attuale dei file chiave
+
+### `app/contatti/page.tsx` — stato attuale (semplificato, solo form)
+
+```tsx
+export default function Contatti() {
+  return (
+    <PageTransition>
+      <main className="pt-16">
+        {/* Hero */}
+        <section className="py-16 md:py-24 bg-surface">
+          {/* SectionLabel + H1 + sottotitolo */}
+        </section>
+
+        {/* Form centrato, max-w-2xl */}
+        <section className="py-16 md:py-24">
+          <div className="mx-auto max-w-2xl px-5 md:px-12">
+            <div className="bg-surface/50 rounded-lg p-6 md:p-10">
+              <ContactForm />
+            </div>
+            <p className="text-center text-xs text-faint mt-8">
+              Rispondo entro 24h · Lun–Ven 9:00–18:00 · Sabato su appuntamento
+            </p>
+          </div>
+        </section>
+      </main>
+    </PageTransition>
+  )
+}
+```
+
+**RIMOSSO:** pannello con telefono, email, studio, orari (tutto ora nel footer).
+**RIMOSSO:** sezione "Preferisci parlare a voce?".
+
+---
+
+### `components/layout/Footer.tsx` — stato attuale (3 colonne)
+
+```tsx
+<footer style={{ background: "linear-gradient(135deg, #1e3050, #182842)" }}>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-10">
+    {/* Col 1: nome + telefono + email */}
+    {/* Col 2: indirizzo studio */}
+    {/* Col 3: orari Lun-Ven / Sabato */}
+  </div>
+  {/* Separatore + copyright + Privacy/Cookie */}
+</footer>
+```
+
+**AGGIUNTO:** orari nel footer.
+**LAYOUT:** da colonna unica a 3 colonne su desktop.
+**COLORE:** `linear-gradient(135deg, #1e3050, #182842)` — stesso delle CTA principali.
+
+---
+
+### `components/sections/RecensioniCarousel.tsx` — nuovo file
+
+Carousel che sostituisce la griglia 2×2 statica nella pagina /recensioni.
+
+- Auto-scroll ogni 5.5s su desktop
+- Swipe touch su mobile
+- Animazione blur + slide laterale (Framer Motion)
+- Card a colori alternati: bianco / `#EEF2FF` / `#F5F7FC` / `#E8EEFF`
+- Dots interattivi per navigazione manuale
+
+---
+
+### `components/layout/Navbar.tsx` — cambiamenti chiave
+
+```tsx
+const pathname = usePathname()  // aggiunto
+
+// Desktop: link attivo in accent, inattivo in muted
+className={pathname === link.href ? "text-accent" : "text-muted hover:text-accent"}
+
+// Mobile: link attivo in accent + font-medium
+className={pathname === link.href ? "text-accent font-medium" : "text-text"}
+
+// Mobile: sfondo bg-white/95 backdrop-blur-md (era bg-surface)
+// RIMOSSO: bottone "Contattami" separato dal menu mobile
+```
+
+---
+
+### Palette CTA — ritmo visivo attuale
+
+```
+Contenuto bianco/grigio (#FFFFFF / #F0F2F7)
+         ↓
+CTA pre-footer: #E8EDF5 (azzurro-grigio chiaro, testo scuro)
+         ↓
+Footer: linear-gradient #1e3050 → #182842 (navy scuro)
+```
+
+Le CTA in homepage (`CTASection.tsx`) mantengono il navy scuro diretto perché sono nel mezzo della pagina, non subito sopra il footer.
+
+---
+
+## Rollback al tema scuro — palette completa
+
+Se si dovesse tornare al **tema nero** (non la struttura, solo i colori):
+
+### `app/globals.css` — sostituisci il blocco `@theme`
 
 ```css
-@import "tailwindcss";
-
 @theme {
   --font-sans:    var(--font-inter);
   --font-heading: var(--font-cormorant);
@@ -28,329 +189,51 @@ Ogni sezione corrisponde a un file da modificare. Copia-incolla il codice indica
 
   --color-white: #FFFFFF;
 }
-
-:root { color-scheme: dark; }
-
-html {
-  scroll-behavior: auto !important;
-  scroll-padding-top: 80px;
-}
-
-body {
-  background-color: #08090D;
-  color: #E8ECF4;
-  font-family: var(--font-inter), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at 70% 0%,
-    rgba(91, 141, 239, 0.04) 0%,
-    transparent 60%
-  );
-}
-
-.link-hover {
-  position: relative;
-}
-.link-hover::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.link-hover:hover::after {
-  transform: scaleX(1);
-}
-
-.footer-link {
-  display: inline-block;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.footer-link:hover {
-  transform: translateX(4px);
-}
-
-::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: #08090D; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #7A8499; }
-
-::selection {
-  background: rgba(91, 141, 239, 0.15);
-  color: #E8ECF4;
-}
 ```
 
----
+E in `body`: `background-color: #08090D; color: #E8ECF4;`
+E `:root { color-scheme: dark; }`
 
-## 2. components/ui/CTAButton.tsx — Ombra hover
+### Colori shadow da aggiornare (usano rgba hardcoded)
 
-Cambia:
-```
-hover:shadow-[0_4px_20px_rgba(30,64,175,0.15)]
-```
-In:
-```
-hover:shadow-[0_4px_20px_rgba(91,141,239,0.15)]
-```
+Tutti i `rgba(30,48,80,...)` → `rgba(91,141,239,...)`
 
----
+File coinvolti:
+- `components/ui/CTAButton.tsx`
+- `components/ui/ContactForm.tsx`
+- `components/ui/SpotlightCard.tsx`
+- `components/sections/Servizi.tsx`
+- `components/sections/RecensioniCarousel.tsx`
+- `app/globals.css` (radial-gradient body + selection)
 
-## 3. components/ui/SpotlightCard.tsx — Gradiente mouse
-
-Cambia:
-```tsx
-background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(30,64,175,0.04), transparent 40%)`
-```
-In:
-```tsx
-background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(91,141,239,0.06), transparent 40%)`
-```
-
----
-
-## 4. components/layout/Navbar.tsx — Sfondo scroll
-
-Cambia:
-```tsx
-scrolled ? "bg-white/80 backdrop-blur-md shadow-[0_1px_0_rgba(17,24,39,0.06)]" : "bg-transparent"
-```
-In:
-```tsx
-scrolled ? "bg-bg/80 backdrop-blur-md" : "bg-transparent"
-```
-
----
-
-## 5. components/sections/CTASection.tsx — SOSTITUISCI INTERAMENTE
+### Footer tema scuro
 
 ```tsx
-"use client"
-
-import { useRef } from "react"
-import Image from "next/image"
-import { motion, useScroll, useTransform } from "framer-motion"
-import FadeIn from "@/components/ui/FadeIn"
-import CTAButton from "@/components/ui/CTAButton"
-import TextReveal from "@/components/ui/TextReveal"
-
-export default function CTASection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  })
-
-  const bilanciaY = useTransform(scrollYProgress, [0, 1], [-30, 30])
-  const bilanciaRotate = useTransform(scrollYProgress, [0, 1], [-3, 3])
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative py-24 md:py-32 bg-surface overflow-hidden"
-      aria-label="Contattami"
-    >
-      <motion.div
-        style={{ y: bilanciaY, rotate: bilanciaRotate }}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.08]"
-        aria-hidden="true"
-      >
-        <Image src="/images/bilancia.png" alt="" width={300} height={300} />
-      </motion.div>
-
-      <div className="relative z-10 max-w-2xl mx-auto px-5 md:px-12 text-center">
-        <FadeIn>
-          <h2 className="font-heading text-4xl md:text-5xl font-medium text-text leading-[1.1] mb-6">
-            <TextReveal>Parliamo del tuo caso.</TextReveal>
-          </h2>
-        </FadeIn>
-
-        <FadeIn delay={0.15}>
-          <p className="text-base text-muted leading-[1.7] mb-10 max-w-md mx-auto">
-            Ogni situazione merita attenzione. Contattami per una
-            consulenza iniziale senza impegno.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={0.3}>
-          <CTAButton text="Contattami" href="/contatti" />
-        </FadeIn>
-      </div>
-    </section>
-  )
-}
+style={{ background: "linear-gradient(to bottom, #10131A, #08090D)" }}
+// testi: text-white → text-text (già E8ECF4)
 ```
 
----
+### CTA Section tema scuro
 
-## 6. components/sections/ChiSono.tsx — Rimuovi bg-surface
-
-Cambia:
 ```tsx
-<section className="py-24 md:py-32 bg-surface" aria-label="Chi Sono" id="chi-sono">
-```
-In:
-```tsx
-<section className="py-24 md:py-32" aria-label="Chi Sono" id="chi-sono">
+style={{ background: "linear-gradient(135deg, #1a2744, #152138)" }}
+// oppure: tornare a bg-surface (scuro) senza gradient
 ```
 
----
+### Icone tema scuro
 
-## 7. components/sections/Testimonianze.tsx — Rimuovi bg-surface
-
-Cambia:
-```tsx
-className="py-24 md:py-32 bg-surface"
-```
-In:
-```tsx
-className="py-24 md:py-32"
-```
+`app/icon.tsx` e `app/apple-icon.tsx`:
+- `background: "#FFFFFF"` → `"#08090D"`
+- `color: "#1e3050"` → `"#5B8DEF"`
 
 ---
 
-## 8. app/icon.tsx — Colori dark
+## Note importanti
 
-Cambia:
-- `background: "#FFFFFF"` → `background: "#08090D"`
-- `color: "#1E40AF"` → `color: "#5B8DEF"`
-- `background: "#1E40AF"` → `background: "#5B8DEF"`
+1. **La struttura delle pagine è indipendente dai colori.** Se si torna al tema scuro, i layout restano quelli attuali (contatti semplificato, footer 3 colonne, carousel recensioni, navbar con active state).
 
----
+2. **`RecensioniCarousel.tsx` è un nuovo file** — non esisteva nel commit prima di `5e4126e`. Se si fa `git checkout` su commit precedenti, il file sparisce. Tenerlo da parte se si vuole riusarlo.
 
-## 9. app/apple-icon.tsx — Colori dark
+3. **Le info di contatto (telefono, email, indirizzo) vivono SOLO nel footer.** Non ci sono più colonne duplicate nelle pagine.
 
-Cambia:
-- `background: "#FFFFFF"` → `background: "#08090D"`
-- `color: "#1E40AF"` → `color: "#5B8DEF"`
-- `background: "#1E40AF"` → `background: "#5B8DEF"`
-
----
-
-## 10. app/manifest.ts — Colori dark
-
-Cambia:
-```ts
-background_color: "#FFFFFF",
-theme_color: "#FFFFFF",
-```
-In:
-```ts
-background_color: "#08090D",
-theme_color: "#08090D",
-```
-
----
-
-## 11. app/recensioni/page.tsx — Rimuovi h-full dalle card
-
-Cambia:
-```tsx
-<FadeIn key={t.id} delay={index * 0.1} className="h-full">
-  <div className="bg-surface border border-border rounded-lg p-8 md:p-10 flex flex-col gap-6 h-full">
-```
-In:
-```tsx
-<FadeIn key={t.id} delay={index * 0.1}>
-  <div className="bg-surface border border-border rounded-lg p-8 md:p-10 flex flex-col gap-6">
-```
-
----
-
-## 12. components/ui/SectionLabel.tsx — Testo grigio, linea più corta
-
-Cambia:
-```tsx
-<div className="w-10 h-0.5 bg-accent" />
-<span className="text-xs uppercase tracking-[0.15em] text-accent font-medium">
-```
-In:
-```tsx
-<div className="w-8 h-px bg-accent" />
-<span className="text-xs uppercase tracking-[0.15em] text-muted font-medium">
-```
-
----
-
-## 13. components/ui/Divider.tsx — Linea piena senza gradient
-
-Sostituisci con:
-```tsx
-export default function Divider() {
-  return (
-    <div className="w-full max-w-5xl mx-auto px-5 md:px-12">
-      <div className="h-px bg-border" />
-    </div>
-  )
-}
-```
-
----
-
-## 14. components/layout/Footer.tsx — Hover text, non accent
-
-Cambia tutti `hover:text-accent` in `hover:text-text` (telefono, email) e `hover:text-muted` (privacy, cookie).
-
----
-
-## 15. components/sections/Testimonianze.tsx — Virgoletta e dot
-
-Virgoletta: cambia `text-[120px]` → `text-6xl`, `opacity: 0.15` → `opacity: 0.2`.
-Dot: cambia `bg-accent/20` → `bg-faint`, `hover:bg-accent/40` → `hover:bg-muted`.
-
----
-
-## 16. components/layout/Navbar.tsx — Link hover grigio
-
-Cambia `hover:text-accent` → `hover:text-text`.
-
----
-
-## 17. globals.css — Linea hover 1px
-
-Cambia `height: 1.5px` → `height: 1px` nel `.link-hover::after`.
-
----
-
-## 18. components/ui/ContactForm.tsx — Bottone e input
-
-Bottone submit: ripristina con il vecchio stile (border-border, text-muted, fill accent swipe).
-Input focus: rimuovi `focus:shadow-[0_1px_0_0_var(--color-accent)]`.
-
----
-
-## Riepilogo: 18 file/modifiche per il rollback completo
-
-| # | File | Tipo modifica |
-|---|---|---|
-| 1 | `app/globals.css` | Sostituisci tutto + height 1px |
-| 2 | `components/ui/CTAButton.tsx` | Sostituisci tutto (vecchio stile) |
-| 3 | `components/ui/SpotlightCard.tsx` | Una riga (gradient) |
-| 4 | `components/layout/Navbar.tsx` | bg scroll + link hover |
-| 5 | `components/sections/CTASection.tsx` | Sostituisci tutto |
-| 6 | `components/sections/ChiSono.tsx` | Rimuovi `bg-surface` + cornice + link |
-| 7 | `components/sections/Testimonianze.tsx` | Rimuovi `bg-surface` + virgoletta + dot |
-| 8 | `app/icon.tsx` | 3 colori |
-| 9 | `app/apple-icon.tsx` | 3 colori |
-| 10 | `app/manifest.ts` | 2 colori |
-| 11 | `app/recensioni/page.tsx` | Rimuovi `h-full` |
-| 12 | `components/ui/SectionLabel.tsx` | Testo + linea |
-| 13 | `components/ui/Divider.tsx` | Sostituisci tutto |
-| 14 | `components/layout/Footer.tsx` | Hover links |
-| 15 | `components/sections/Servizi.tsx` | Card: bg-surface, rounded-lg, vecchio hover |
-| 16 | `components/ui/ContactForm.tsx` | Bottone + input focus |
+4. **Commit di riferimento sicuro:** `686a487` — quello prima di tutto questo redesign. Funzionava, email configurata, build pulita.
