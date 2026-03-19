@@ -26,7 +26,7 @@ export default function Hero() {
         style={{ y: titleY, opacity: titleOpacity }}
         className="relative z-10 mx-auto w-full max-w-6xl px-5 md:px-12 py-20 md:py-28"
       >
-        <div className="flex items-center gap-4 mb-10">
+        <div className="flex items-center justify-center md:justify-start gap-4 mb-10">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: 60 }}
@@ -43,14 +43,14 @@ export default function Hero() {
           </motion.span>
         </div>
 
-        <h1 className="font-heading font-medium text-5xl md:text-6xl lg:text-7xl text-text leading-[1.1]">
+        <h1 className="font-heading font-medium text-5xl md:text-6xl lg:text-7xl text-text leading-[1.1] text-center md:text-left">
           <TextReveal delay={0.6}>Francesca</TextReveal>
           <br />
           <TextReveal delay={1.0}>Cicalese</TextReveal>
         </h1>
 
         <FadeIn delay={2.0}>
-          <p className="font-sans text-base md:text-lg text-muted leading-[1.7] max-w-md mt-6">
+          <p className="font-sans text-base md:text-lg text-muted leading-[1.7] max-w-md mt-6 text-center md:text-left mx-auto md:mx-0">
             Assistenza legale in diritto penale,
             diritto di famiglia e diritto civile.
           </p>
@@ -60,7 +60,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 2.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8"
+          className="mt-8 flex justify-center md:justify-start"
         >
           <CTAButton text="Contattami" href="/contatti" solid />
         </motion.div>
