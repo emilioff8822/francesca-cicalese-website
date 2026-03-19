@@ -124,16 +124,21 @@ export default function ChiSono() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
               {valori.map((valore, index) => (
                 <FadeIn key={valore.titolo} delay={index * 0.1}>
-                  <div className="bg-white border border-border p-8 group transition-all duration-500 hover:border-accent/30 hover:shadow-[0_8px_30px_rgba(30,48,80,0.06)] active:border-accent/30 active:shadow-sm h-full">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 border border-accent/20 flex items-center justify-center text-accent">
+                  <div className="bg-white border border-border p-8 group transition-all duration-500 hover:border-accent/30 hover:shadow-[0_8px_30px_rgba(30,48,80,0.06)] active:border-accent/30 active:shadow-sm h-full text-center flex flex-col items-center">
+                    <div
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-white"
+                      style={{
+                        background: "linear-gradient(135deg, #1e3050, #263d5e)",
+                        boxShadow: "0 4px 16px rgba(30, 48, 80, 0.25), 0 1px 3px rgba(30, 48, 80, 0.15)",
+                      }}
+                    >
+                      <div className="w-6 h-6">
                         {valore.icon}
                       </div>
-                      <h3 className="font-heading text-xl font-medium text-text">
-                        {valore.titolo}
-                      </h3>
                     </div>
-                    <div className="w-8 h-0.5 bg-accent/40 mb-4 group-hover:w-12 transition-all duration-500" />
+                    <h3 className="font-heading text-xl font-medium text-text mb-3">
+                      {valore.titolo}
+                    </h3>
                     <p className="text-sm text-muted leading-[1.8]">
                       {valore.testo}
                     </p>

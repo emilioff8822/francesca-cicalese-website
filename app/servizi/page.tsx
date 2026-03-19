@@ -87,7 +87,7 @@ export default function Servizi() {
                     <ul className="space-y-3 mb-10">
                       {servizio.punti.map((punto) => (
                         <li key={punto} className="flex items-start gap-3">
-                          <span className="mt-2 block w-4 h-px bg-accent shrink-0" />
+                          <span className="mt-[9px] block w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                           <span className="text-sm text-muted leading-[1.7]">{punto}</span>
                         </li>
                       ))}
@@ -136,7 +136,7 @@ export default function Servizi() {
                       <ul className="space-y-3 mb-10">
                         {servizio.punti.map((punto) => (
                           <li key={punto} className="flex items-start gap-3">
-                            <span className="mt-2 block w-4 h-px bg-accent shrink-0" />
+                            <span className="mt-[9px] block w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                             <span className="text-sm text-muted leading-[1.7]">{punto}</span>
                           </li>
                         ))}
