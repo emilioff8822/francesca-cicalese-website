@@ -6,6 +6,8 @@ import SectionLabel from "@/components/ui/SectionLabel"
 import CTAButton from "@/components/ui/CTAButton"
 import RecensioniCarousel from "@/components/sections/RecensioniCarousel"
 import { MessageSquareQuote } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd"
+import { ReviewJsonLd } from "@/components/seo/ReviewJsonLd"
 
 export const metadata: Metadata = {
   title: "Recensioni Clienti | Avv. Francesca Cicalese — Studio Legale Roma",
@@ -22,6 +24,11 @@ export const metadata: Metadata = {
 export default function Recensioni() {
   return (
     <PageTransition>
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.francescacicalese.it" },
+        { name: "Recensioni", url: "https://www.francescacicalese.it/recensioni" },
+      ]} />
+      <ReviewJsonLd />
       <main className="pt-16">
 
         {/* Hero */}

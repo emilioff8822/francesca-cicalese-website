@@ -5,7 +5,9 @@ import FadeIn from "@/components/ui/FadeIn"
 import TextReveal from "@/components/ui/TextReveal"
 import SectionLabel from "@/components/ui/SectionLabel"
 import ContactForm from "@/components/ui/ContactForm"
+import Link from "next/link"
 import { Mail } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd"
 
 export const metadata: Metadata = {
   title: "Contatti | Studio Legale Avv. Francesca Cicalese — Via Sabotino 46, Roma",
@@ -22,6 +24,10 @@ export const metadata: Metadata = {
 export default function Contatti() {
   return (
     <PageTransition>
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.francescacicalese.it" },
+        { name: "Contatti", url: "https://www.francescacicalese.it/contatti" },
+      ]} />
       <main className="pt-16">
 
         {/* Hero */}
@@ -73,6 +79,15 @@ export default function Contatti() {
                 Lun — Ven 9:00 — 18:00
                 <span className="mx-2">·</span>
                 Sabato su appuntamento
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.4}>
+              <p className="text-center text-sm text-muted mt-6">
+                Non sai quale area riguarda il tuo caso?{" "}
+                <Link href="/servizi" className="text-accent hover:underline">Scopri le aree di pratica</Link>
+                {" "}o{" "}
+                <Link href="/recensioni" className="text-accent hover:underline">leggi le testimonianze dei clienti</Link>.
               </p>
             </FadeIn>
           </div>

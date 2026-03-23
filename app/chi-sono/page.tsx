@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { GraduationCap, Clock, ShieldCheck, UserRound } from "lucide-react"
 import PageTransition from "@/components/providers/PageTransition"
 import FadeIn from "@/components/ui/FadeIn"
 import TextReveal from "@/components/ui/TextReveal"
 import SectionLabel from "@/components/ui/SectionLabel"
 import CTAButton from "@/components/ui/CTAButton"
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd"
 
 export const metadata: Metadata = {
   title: "Chi Sono | Avv. Francesca Cicalese — Avvocato Roma Prati",
@@ -43,6 +45,10 @@ const valori = [
 export default function ChiSono() {
   return (
     <PageTransition>
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.francescacicalese.it" },
+        { name: "Chi Sono", url: "https://www.francescacicalese.it/chi-sono" },
+      ]} />
       <main className="pt-16">
 
         {/* Hero */}
@@ -94,7 +100,9 @@ export default function ChiSono() {
                     Sono un avvocato laureata in Giurisprudenza presso l&apos;Università degli Studi
                     di Roma Tre, iscritta all&apos;Ordine degli Avvocati di Roma. Con oltre otto
                     anni di esperienza nel foro capitolino, ho maturato una solida preparazione
-                    in diritto penale, diritto di famiglia e diritto civile.
+                    in{" "}<Link href="/servizi#diritto-penale" className="text-accent hover:underline">diritto penale</Link>,{" "}
+                    <Link href="/servizi#diritto-famiglia" className="text-accent hover:underline">diritto di famiglia</Link>{" "}
+                    e{" "}<Link href="/servizi#diritto-civile" className="text-accent hover:underline">diritto civile</Link>.
                   </p>
                 </FadeIn>
 
@@ -108,9 +116,9 @@ export default function ChiSono() {
 
                 <FadeIn delay={0.4}>
                   <p className="text-base text-muted leading-[1.8] mb-10">
-                    Il mio studio è situato nel quartiere Prati, a pochi passi dal Palazzo di
-                    Giustizia. Offro assistenza legale personalizzata, privilegiando sempre
-                    il dialogo e la trasparenza con ogni cliente.
+                    Il mio studio legale è situato nel quartiere Prati, a pochi passi dal Palazzo di
+                    Giustizia e da Piazzale Clodio. Offro assistenza legale personalizzata e consulenza
+                    su misura, privilegiando sempre il dialogo e la trasparenza con ogni cliente.
                   </p>
                 </FadeIn>
 

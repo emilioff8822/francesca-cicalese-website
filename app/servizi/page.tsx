@@ -7,6 +7,31 @@ import SectionLabel from "@/components/ui/SectionLabel"
 import CTAButton from "@/components/ui/CTAButton"
 import Divider from "@/components/ui/Divider"
 import { servizi } from "@/data/servizi"
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd"
+import { FaqJsonLd } from "@/components/seo/FaqJsonLd"
+
+const faqData = [
+  {
+    question: "Quali servizi di diritto penale offre l'Avv. Cicalese a Roma?",
+    answer: "L'Avv. Francesca Cicalese offre difesa in fase di indagini preliminari, assistenza durante interrogatori e fermi, rappresentanza in udienza preliminare e dibattimento, difesa per reati contro la persona e il patrimonio, e procedimenti in Corte d'Appello. Lo studio si trova in Via Sabotino 46, Roma zona Prati.",
+  },
+  {
+    question: "L'Avv. Cicalese si occupa di separazioni e divorzi a Roma?",
+    answer: "Sì, l'Avv. Cicalese offre assistenza completa in diritto di famiglia: separazione e divorzio consensuale o giudiziale, affidamento e mantenimento dei figli, tutela legale dei minori, successioni ed eredità, e modifica delle condizioni di separazione.",
+  },
+  {
+    question: "Dove si trova lo studio legale dell'Avv. Francesca Cicalese?",
+    answer: "Lo studio legale si trova in Via Sabotino 46, 00195 Roma, nel quartiere Prati, a pochi minuti dal Palazzo di Giustizia e da Piazzale Clodio. È raggiungibile con la metro A fermata Lepanto.",
+  },
+  {
+    question: "Come posso contattare l'Avv. Cicalese per una consulenza?",
+    answer: "Puoi contattare l'Avv. Francesca Cicalese telefonicamente al +39 349 163 5839, via email a francescacicalese1@gmail.com, oppure compilando il modulo di contatto sul sito francescacicalese.it/contatti. Lo studio riceve dal lunedì al venerdì, dalle 9:00 alle 18:00.",
+  },
+  {
+    question: "L'Avv. Cicalese tratta cause di diritto del lavoro?",
+    answer: "Sì, l'Avv. Cicalese offre assistenza in diritto del lavoro per licenziamento illegittimo e reintegro, mobbing e molestie sul luogo di lavoro, contratti di lavoro, vertenze per retribuzioni non corrisposte, e accordi sindacali e conciliazioni.",
+  },
+]
 
 export const metadata: Metadata = {
   title: "Aree di Pratica | Diritto Penale, Famiglia, Civile e Lavoro — Avv. Cicalese Roma",
@@ -37,6 +62,11 @@ const mobileIcons: Record<string, React.ReactNode> = {
 export default function Servizi() {
   return (
     <PageTransition>
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.francescacicalese.it" },
+        { name: "Servizi", url: "https://www.francescacicalese.it/servizi" },
+      ]} />
+      <FaqJsonLd faqs={faqData} />
       <main className="pt-16">
 
         <section className="py-24 md:py-32" aria-label="Aree di pratica">

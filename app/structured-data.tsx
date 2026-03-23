@@ -19,13 +19,14 @@ const legalService = {
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 41.9109,
-    longitude: 12.456,
+    latitude: 41.9142,
+    longitude: 12.4582,
   },
   areaServed: [
     { "@type": "City", name: "Roma" },
     { "@type": "AdministrativeArea", name: "Provincia di Roma" },
   ],
+  image: "https://www.francescacicalese.it/images/og-image.jpg",
   serviceType: ["Diritto Penale", "Diritto di Famiglia", "Diritto Civile", "Diritto del Lavoro"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -96,8 +97,19 @@ const person = {
     "@id": "https://www.francescacicalese.it/#organization",
   },
   alumniOf: {
-    "@type": "EducationalOrganization",
-    name: "Università degli Studi di Roma",
+    "@type": "CollegeOrUniversity",
+    name: "Università degli Studi Roma Tre",
+    url: "https://www.uniroma3.it",
+  },
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "Abilitazione professionale",
+    name: "Iscrizione Ordine degli Avvocati di Roma",
+  },
+  memberOf: {
+    "@type": "Organization",
+    name: "Ordine degli Avvocati di Roma",
+    url: "https://www.ordineavvocatiroma.it",
   },
   knowsAbout: [
     "Diritto Penale",

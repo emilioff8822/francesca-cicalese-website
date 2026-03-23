@@ -54,6 +54,12 @@ export const metadata: Metadata = {
     title: "Avv. Francesca Cicalese | Studio Legale Roma",
     description:
       "Assistenza legale in diritto penale, famiglia, civile e lavoro. Studio in zona Prati, Via Sabotino 46, Roma.",
+    images: [{
+      url: "https://www.francescacicalese.it/opengraph-image",
+      width: 1200,
+      height: 630,
+      alt: "Studio Legale Avv. Francesca Cicalese — Roma",
+    }],
   },
   twitter: {
     card: "summary_large_image",

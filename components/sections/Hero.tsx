@@ -44,6 +44,7 @@ export default function Hero() {
         </div>
 
         <h1 className="font-heading font-medium text-5xl md:text-6xl lg:text-7xl text-text leading-[1.1] text-center md:text-left">
+          <span className="sr-only">Avvocato Penalista Roma — </span>
           <TextReveal delay={0.6}>Francesca</TextReveal>
           <br />
           <TextReveal delay={1.0}>Cicalese</TextReveal>
@@ -51,8 +52,7 @@ export default function Hero() {
 
         <FadeIn delay={2.0}>
           <p className="font-sans text-base md:text-lg text-muted leading-[1.7] max-w-md mt-6 text-center md:text-left mx-auto md:mx-0">
-            Assistenza legale in diritto penale,
-            diritto di famiglia e diritto civile.
+            Avvocato penalista e civilista a Roma, zona Prati — diritto penale, famiglia, civile e lavoro.
           </p>
         </FadeIn>
 
