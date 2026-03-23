@@ -87,9 +87,28 @@ body::before {
 
 * { -webkit-tap-highlight-color: transparent; }
 
+/* Scroll fluido su iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch targets minimi 48px (standard Apple/Google) */
 @media (hover: none) and (pointer: coarse) {
+  button, a {
+    min-height: 48px;
+    min-width: 48px;
+  }
   button:active, a:active {
     transform: scale(0.97);
     transition: transform 0.1s ease;
+  }
+}
+
+/* Rispetta prefers-reduced-motion — animazioni istantanee per chi le ha disabilitate */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

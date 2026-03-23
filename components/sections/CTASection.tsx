@@ -14,8 +14,8 @@ export default function CTASection() {
     offset: ["start end", "end start"],
   })
 
-  const bilanciaY = useTransform(scrollYProgress, [0, 1], [-30, 30])
-  const bilanciaRotate = useTransform(scrollYProgress, [0, 1], [-3, 3])
+  const bilanciaY = useTransform(scrollYProgress, [0, 1], [-20, 20])
+  const bilanciaRotate = useTransform(scrollYProgress, [0, 1], [-2, 2])
 
   return (
     <section

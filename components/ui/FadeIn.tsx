@@ -10,25 +10,28 @@ type Props = {
   className?: string
 }
 
+const EASE = [0.25, 0.46, 0.45, 0.94] as const
+
 export default function FadeIn({
   children,
   delay = 0,
-  duration = 0.6,
+  duration = 0.55,
   className,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-60px" })
+  const inView = useInView(ref, { once: true, margin: "-20px" })
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       transition={{
         duration,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: EASE,
       }}
+      style={{ willChange: "transform, opacity" }}
       className={className}
     >
       {children}
